@@ -1,0 +1,23 @@
+{% extends 'reader/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="m-xl-5 pb-xl-5">
+            <h2 class="text-center">创建账户</h2>
+
+            <img class="img-circle " src="{% static 'blog/img/avatar.png' %}" alt="">
+            <form class="col-xl-4 m-auto" action="{% url 'accounts:register' %}" method="post">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                {% for field in form %}
+                    {{ field }}
+                    {{ field.errors }}
+                {% endfor %}
+                <button class="col-xl-12 btn btn-danger btn-lg"  type="submit">创建账户
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

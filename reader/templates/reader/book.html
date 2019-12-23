@@ -1,0 +1,45 @@
+{% extends 'reader/base.html' %}
+{% block head %}
+    <title>{{ article.art_name }}_{{ article.art_type }}—哦啦阅读网</title>
+    <meta name="description" content="{{ article.art_name }}所有章节，{{ article.art_name }}免费阅读">
+    <meta name="keywords" content="{{ article.art_name }}，哦啦，哦啦网，哦啦阅读网,古典文学，中国古典名著，免费阅读，免费小说，经典小说,读书">
+{% endblock head %}
+{% block content %}
+
+    <div class='container'>
+        <div class='row no-gutters'>
+            <div>当前位置：</div>
+            <div>首页></div>
+            <div>{{ article.art_type }}></div>
+            <div>{{ article.art_name }}</div>
+        </div>
+        <div class='col-xl-12 text-center book_title'>{{ article.art_name }}</div>
+        <div class="col-xl-12 text-center">开始阅读</div>
+
+        <div class='row  book_info'>
+            <div class='info_box'>本书作者:</div>
+            <div>{{ article.art_author }}</div>
+            <div class='info_box'>更新时间:</div>
+            <div>{{ last_chap.chapter_add_date }}</div>
+            <div class='info_box'>最新章节:</div>
+            <div>{{ last_chap.chapter_name }}</div>
+
+        </div>
+
+        <div class='row content_box_margin no-gutters'>
+            <div class='col-xl-1 '>正文:</div>
+            <div class='col-xl-1 content_posit'>共{{ chapter_num }}章</div>
+            <div class='col-xl-10 content_posit'>共{{ article.word_number }}字</div>
+        </div>
+        <div class="row no-gutters">
+            {% for item in chapters %}
+                <div class='col-xl-4 mb-xl-4 book_title_box '>
+                    <a href="{% url 'reader:chapter' article.id item.id %}">
+                        {{ item.chapter_name }}</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% include 'comments/comment_list.html' %}
+{% endblock content %}

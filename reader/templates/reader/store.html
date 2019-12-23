@@ -1,0 +1,70 @@
+{% extends 'reader/base.html' %}
+{% block head %}
+    <title>书库_哦啦阅读网</title>
+    <meta name="description" content="书库，所有书籍，完本，哦啦阅读网，学习、创作、阅读的网站。在这里可以系统的学习、创作、尽情的阅读。">
+    <meta name="keywords" content="哦啦，哦啦网，哦啦阅读网,古典文学，中国古典名著，经典小说，免费阅读，完本,小说排行,读书">
+{% endblock head %}
+{% block content %}
+    <div class='container header_label_box'>
+        <div class='row'>
+            <div class='col-lg-1'>分类</div>
+            <div class='col-lg-1'>流行</div>
+            <div class='col-lg-1'>全部</div>
+            <div class='col-lg-1'>玄幻</div>
+            <div class='col-lg-1'>奇幻</div>
+            <div class='col-lg-1'>科幻</div>
+            <div class='col-lg-1'>武侠</div>
+            <div class='col-lg-1'>仙侠</div>
+            <div class='col-lg-1'>都市</div>
+            <div class='col-lg-1'>言情</div>
+            <div class='col-lg-1'>历史</div>
+        </div>
+        <div class='row'>
+            <div class='col-lg-1'></div>
+            <div class='col-lg-1 mt-lg-3'>经典</div>
+            <div class='col-lg-1 mt-lg-3'>全部</div>
+            <div class='col-lg-1 mt-lg-3'>名著</div>
+            <div class='col-lg-1 mt-lg-3'>神话</div>
+            <div class='col-lg-1 mt-lg-3'>小说</div>
+            <div class='col-lg-1 mt-lg-3'>诸子</div>
+            <div class='col-lg-1 mt-lg-3'>诗词</div>
+            <div class='col-lg-1 mt-lg-3'>史书</div>
+        </div>
+        <div class='row'>
+            <div class='col-lg-2 mt-lg-3'>排序</div>
+            <div class='col-lg-2 mt-lg-3'>总点击</div>
+            <div class='col-lg-2 mt-lg-3'>总推荐</div>
+            <div class='col-lg-2 mt-lg-3'>总收藏</div>
+            <div class='col-lg-2 mt-lg-3'>总讨论</div>
+            <div class='col-lg-2 mt-lg-3'>更新时间</div>
+        </div>
+        <div class='row'>
+            <div class='col-lg-1 mt-lg-3'>类别</div>
+            <div class='col-lg-1 mt-lg-3'>书名</div>
+            <div class='col-lg-1 mt-lg-3'>状态</div>
+            <div class='col-lg-1 mt-lg-3'>作者</div>
+            <div class='col-lg-1 mt-lg-3'>阅读量</div>
+            <div class='col-lg-1 mt-lg-3'>添加时间</div>
+            <div class='col-lg-6 mt-lg-3'>简介</div>
+        </div>
+        <hr/>
+
+        {% for item in articles %}
+
+            <div class='row no-gutters'>
+
+                <div class='col-lg-1 mb-lg-3'>{{ item.art_type }}</div>
+                <div class='col-lg-1  mb-lg-3'>
+                    <a href="{% url 'reader:book' item.id %}">
+                        {{ item.art_name }}</a></div>
+                <div class='col-lg-1 mb-lg-3'>{{ item.art_status }}</div>
+                <div class='col-lg-1 mb-lg-3'>{{ item.art_author }}</div>
+                <div class='col-lg-1 mb-lg-3'>{{ item.art_hits }}</div>
+                <div class='col-lg-1 mb-lg-3'>{{ item.created_time |date:'Y-m-d' }}</div>
+                <div class='col-lg-6 mb-lg-3 sort_intr_content'>{{ item.art_introduction }}</div>
+            </div>
+
+        {% endfor %}
+
+    </div>
+{% endblock content %}

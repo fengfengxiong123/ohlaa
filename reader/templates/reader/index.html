@@ -1,0 +1,131 @@
+{% extends 'reader/base.html' %}
+{% block head %}
+    <title>哦啦阅读网</title>
+    <meta name="description" content="哦啦阅读网，学习、创作、阅读的网站。在这里可以系统的学习、创作、尽情的阅读。">
+    <meta name="keywords" content="哦啦，哦啦网，哦啦阅读网,免费阅读，完本小说，免费完本，免费小说，古典文学，中国古典名著，经典小说，写作,小说排行,读书">
+{% endblock head %}
+{% block content %}
+    <div class="container">
+
+        <div class="content_classify_box flex_direction">
+            <div class="content_classify_text">
+                <div class="content_style_classify">风格分类</div>
+                <div class="content_style_classify_hr"></div>
+                <div class="style_classify__text text_margin">流行</div>
+                <div class="style_classify__text_hr"></div>
+                <div class="flex_direction">
+                    <div class="style_classify__text text_margin">玄幻</div>
+                    <div class="style_classify__text text_margin">奇幻</div>
+                    <div class="style_classify__text text_margin">科幻</div>
+                </div>
+                <div class="text_hr_long"></div>
+                <div class="flex_direction">
+                    <div class="style_classify__text text_margin">武侠</div>
+                    <div class="style_classify__text text_margin">武侠</div>
+                </div>
+                <div class="text_hr_short"></div>
+                <div class="flex_direction">
+                    <div class="style_classify__text text_margin">都市</div>
+                    <div class="style_classify__text text_margin">言情</div>
+                    <div class="style_classify__text text_margin">历史</div>
+                </div>
+                <div class="text_hr_long"></div>
+                <div class="style_classify__text text_margin">经典</div>
+                <div class="style_classify__text_hr"></div>
+                <div class="flex_direction">
+                    <div class="style_classify__text text_margin">名著</div>
+                    <div class="style_classify__text text_margin">神话</div>
+                    <div class="style_classify__text text_margin">小说</div>
+                </div>
+                <div class="text_hr_long"></div>
+                <div class="flex_direction">
+                    <div class="style_classify__text text_margin">诸子</div>
+                    <div class="style_classify__text text_margin">诗词</div>
+                    <div class="style_classify__text text_margin">史书</div>
+                </div>
+                <div class="text_hr_long"></div>
+            </div>
+
+            <img class="content_classify_image"
+                 src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=767638731,2546192141&fm=26&gp=0.jpg"
+                 alt="星空">
+        </div>
+        <div class="hr"></div>
+        <div class="content_rank_box flex_direction">
+            <div class="rank_read_box">
+                <div class="flex_direction">
+                    <div class="rank_read_size">阅读排行</div>
+                    <div class="rank_more_size">更多></div>
+                </div>
+
+                {% for item in hits %}
+                    <div class="flex_direction">
+                        <div class="rank_read_content_size">
+                            <a href="{% url 'reader:book' item.id %}">{{ item.art_name }}</a>
+                        </div>
+                        <div class="rank_read_number_size">{{ item.art_hits }}</div>
+                    </div>
+                {% endfor %}
+
+
+            </div>
+            <div class="rank_read_box">
+                <div class="flex_direction">
+                    <div class="rank_read_size">热度排行</div>
+                    <div class="rank_more_size">更多></div>
+                </div>
+                {% for item in hots %}
+                    <div class="flex_direction">
+                        <div class="rank_read_content_size">
+                            <a href="{% url 'reader:book' item.id %}">
+                                {{ item.art_name }}</a></div>
+                        <div class="rank_read_number_size">{{ item.art_hots }}</div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+        <div class="hr"></div>
+
+
+        <div class="row ">
+            <div class="col-xl-5 mt-xl-4 mb-xl-4 ">热门评论</div>
+            <div class="col-xl-1 mt-xl-4 mb-xl-4">更多></div>
+            <div class="col-xl-5 mt-xl-4 mb-xl-4">作品相关</div>
+            <div class="col-xl-1 mt-xl-4 mb-xl-4">更多></div>
+        </div>
+        <div class="hr"></div>
+        <div class="row ">
+            <div class="col-xl-6 mt-xl-3">
+                {% for item in arts_nums %}
+                    <div class="row no-gutters mb-xl-3">
+                        <div class="col-xl-4">{{ item.obj.art_name }}</div>
+                        <div class="col-xl-2">评论{{ item.obj.comment_nums }}</div>
+                        <div class="col-xl-6">
+                            <div class="row no-gutters">
+                                {% for comment in item.comments %}
+                                    <div class="col-xl-6">{{ comment.body }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-xl-6 mt-xl-3">
+                {% for item in arts_nums %}
+                    <div class="row no-gutters mb-xl-3">
+                        <div class="col-xl-4">{{ item.obj.art_name }}</div>
+                        <div class="col-xl-2">评论{{ item.obj.comment_nums }}</div>
+                        <div class="col-xl-6">
+                            <div class="row no-gutters">
+                                {% for comment in item.comments %}
+                                    <div class="col-xl-6">{{ comment.body }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

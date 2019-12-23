@@ -1,0 +1,48 @@
+{% extends 'reader/base.html' %}
+{% block head %}
+    <title>{{ chapter.chapter_name }}_{{ article.art_name }}_{{ article.art_type }}—哦啦阅读网</title>
+    <meta name="description" content="{{ article.art_introduction }}哦啦阅读网。">
+    <meta name="keywords" content="{{ article.art_name }}，{{ chapter.chapter_name }}，哦啦，哦啦网，哦啦阅读网,古典文学，中国古典名著，经典小说，读书，学习">
+{% endblock head %}
+{% block content %}
+
+    <div class='container book_content_box'>
+        <div class='row no-gutters'>
+            <div>当前位置：</div>
+            <div>首页></div>
+            <div>{{ article.art_type }}></div>
+            <div>{{ article.art_name }}></div>
+            <div>{{ chapter.chapter_name }}</div>
+        </div>
+        <div class='row  no-gutters'>
+            <div class='content_width'>
+                <div class='text-center book_chapter_name'>{{ chapter.chapter_name }}</div>
+                <div class='flex_direction chapter_info'>
+                    <div class='info_box'>作者：{{ article.art_author }}</div>
+                    <div class='info_box'>字数：{{ chapter.word_number }}</div>
+                    <div class='info_box'> 更新时间：{{ chapter.chapter_add_date }}</div>
+                </div>
+                <div class='book_content'>{{ chapter.chapter_content | safe }}</div>
+                <div class='flex_direction book_content_bottom '>
+                    <div class='bottom_center '>
+                        {% if previous is not None %}
+                            <a href="{% url 'reader:chapter' article.id previous.id %}">上章</a>
+                        {% else %}
+                            <a href="{% url 'reader:chapter' article.id chapter.id %}">首章</a>
+                        {% endif %}
+                    </div>
+                    <div class='bottom_center '>
+                        <a href="{% url 'reader:book' article.id %}">目录</a>
+                    </div>
+                    <div class='bottom_center '>
+                        {% if next is not None %}
+                            <a href='{% url 'reader:chapter' article.id next.id %}'>下章</a>
+                        {% else %}
+                            <a href='{% url 'reader:chapter' article.id chapter.id %}'>终章</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

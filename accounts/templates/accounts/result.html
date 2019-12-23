@@ -1,0 +1,21 @@
+{% extends 'reader/base.html' %}
+{% load static %}
+{% block content %}
+    <div id="primary" class="container">
+        <div id="content" role="main">
+
+            <header class="text-center">
+
+                <h4 class="replay_cotent"> {{ content }}</h4>
+            </header><!-- .archive-header -->
+            <br/>
+            <header class="" style="text-align: center">
+
+{#                <a href="{% url "account:login" %}">登录</a>#}
+                <a href="">登录</a>
+                |
+                <a href="/">回到首页</a>
+            </header><!-- .archive-header -->
+        </div>
+    </div>
+{% endblock %}
