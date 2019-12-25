@@ -8,6 +8,7 @@ from .pagination import MyPageNumberPagination
 from .serializer import ArticleSerializer
 import json
 from accounts.models import OhlaaUser
+from comments.forms import CommentForm
 
 
 # Create your views here.
@@ -39,7 +40,32 @@ class StoreView(APIView):
         return render(request, 'reader/store.html', context)
 
 
-from comments.forms import CommentForm
+class CategoryView(APIView):
+    def get(self, request, *args, **kwargs):
+        print(self.kwargs)
+        category = self.kwargs['category']
+        articles = Article.objects.all().filter(art_type=category).values('art_name', 'created_time', 'art_author',
+                                                                          'art_type', 'art_status',
+                                                                         'art_introduction', 'art_hits', 'id')
+
+        context = {'articles': articles}
+        return render(request, 'reader/store.html', context)
+
+
+class SortView(APIView):
+    def get(self, request, *args, **kwargs):
+        sort = self.kwargs['sort']
+        sort_list = ['art_hits', 'art_hots', 'comment_nums', 'last_mod_time']
+        if sort in sort_list:
+            sort = '-' + sort
+            articles = Article.objects.all().order_by(sort).values('art_name', 'created_time', 'art_author',
+                                                                   'art_type', 'art_status',
+                                                                   'art_introduction', 'art_hits', 'id')
+        else:
+            articles = [{'art_name': '暂无内容'}]
+        context = {'articles': articles}
+
+        return render(request, 'reader/store.html', context)
 
 
 class BookView(APIView):
@@ -110,24 +136,24 @@ class ChapterView(APIView):
         chapter_id = kwargs['chapter_id']
         article = \
             Article.objects.filter(id=book_id).values('id', 'art_name', 'art_type', 'art_introduction', 'art_author')[0]
-        chapter = ArtChapter.objects.filter(article_id=book_id, id=chapter_id)[0]
-        if chapter.chapter_hits:
-            chapter.chapter_hits += 1  # 章点击量+1
+        chapter = ArtChapter.objects.filter(article_id=book_id, id=chapter_id)
+        if chapter[0].chapter_hits:
+            add_chapter_hit = chapter[0].chapter_hits + 1  # 章点击量+1
         else:
-            chapter.chapter_hits = 1
-        if not chapter.word_number:
+            add_chapter_hit = 1
+
+        if not chapter[0].word_number:
             num = 0
-            for word in chapter.chapter_content:
+            for word in chapter[0].chapter_content:
                 if '\u4e00' <= word <= '\u9fff':
                     num += 1
+            chapter.update(word_number=num)
 
-            chapter.word_number = num
-
-        chapter.save()
+        chapter.update(chapter_hits=add_chapter_hit)
 
         previous = ArtChapter.objects.filter(article_id=book_id, id__lt=chapter_id).order_by('-id').first()  # __gt 小于
         next_article = ArtChapter.objects.filter(article_id=book_id, id__gt=chapter_id).order_by('id').first()
-        context = {'article': article, 'chapter': chapter, 'previous': previous, 'next': next_article}
+        context = {'article': article, 'chapter': chapter[0], 'previous': previous, 'next': next_article}
         return render(request, 'reader/chapter.html', context)
 
 

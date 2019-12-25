@@ -1,590 +1,955 @@
-/*------------Visit组件--------------------*/
-.visit_content_positon {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin: 30px 10%;
+/* >=768的设备 */
+@media screen and (max-width: 576px) {
+
+    /*-----------------------------------------*/
+    /*------------公用--------------------*/
+    body {
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+
+    .some_display_none {
+        display: none;
+    }
+
+
+    /*-------------------------------*/
+    /*------------App-header 头部-------------------*/
+    .header_content {
+        margin-top: 10px;
+        height: 70px;
+        /*    !!!!!!*/
+    }
+
+
+    .header_content_titile {
+        color: #993300;
+        font-family: "宋体";
+        font-weight: bolder;
+        /*    !!!!!!*//*    !!!!!!*//*    !!!!!!*/
+    }
 
-}
-
-.visit_content_width {
-    width: 25%;
-}
-
-/*-----------------------------------------*/
-/*------------公用--------------------*/
-
-
-body {
-    min-height: 100%;
-    margin: 0;
-    padding: 0;
-    position: relative;
-}
-
-.flex_direction {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: left;
-}
-
-hr {
-    /* width: 1198px; */
-
-}
-
-.header_label {
-    width: 60px;
-    height: 50px;
-}
-
-/*-------------------------------*/
-/*------------App-header 头部-------------------*/
-
-.header_content {
-    margin-top: 10px;
-    height: 70px;
-}
-
-.header_content_titile {
-    color: #993300;
-    font-family: "宋体";
-    font-weight: bolder;
-    font-size: 42px;
-    height: 60px;
-    text-align: left;
-}
-
-.header_content_input {
-
-    height: 40px;
-}
-
-.header_content_btn {
-    /*width: 46px;*/
-    height: 46px;
-    border-radius: 8px;
-    background-color: white;
-}
-
-.header_content_login_register {
-    width: 60px;
-    height: 50px;
-    text-align: right;
-    line-height: 50px;
-    vertical-align: middle;
-    font-size: 15px;
-}
-
-.login_postion {
-    margin-left: 190px;
-}
-
-.register_postion {
-    margin-left: 40px;
-}
-
-.header_label_box {
-    font-size: 16px;
-}
-
-.header_label_margin_left_first {
-    margin-left: 0px;
-    width: 60px;
-    height: 50px;
-    line-height: 50px;
-}
-
-.header_label_margin_left_other {
-    margin-left: 140px;
-    width: 60px;
-    height: 50px;
-    line-height: 50px;
-}
-
-.header_label_margin_right {
-    margin-left: 510px;
-    width: 120px;
-    height: 50px;
-    line-height: 50px;
-}
-
-/*----------------------------------------------*/
-/*----------------App-footer 底部----------------*/
-
-
-.footer_contact {
-    background-color: #F2F2F2;
-}
-
-.contact_text {
-    height: 58px;
-    line-height: 58px;
-
-}
-
-
-
-.contact_text_line_two_three_padding {
-    /*padding-top: 31px;*/
-}
-
-
-
-
-
-/*-----------------------------------------------------------*/
-.App-content {
-    width: 1200px;
-    /* height: 1830px; */
-    margin: 0 auto;
-}
-
-/*-----------风格分类组件部分------------*/
-.content_classify_box {
-    width: 1200px;
-    /* height:620px; */
-}
-
-.content_classify_text {
-    width: 360px;
-    height: 390px;
-    margin: 0 0 0 0;
-}
-
-.content_classify_image {
-    width: 748px;
-    height: 380px;
-    margin: 0 0 0 1px;
-}
-
-.content_style_classify {
-    width: 113px;
-    height: 33px;
-    margin-left: 124px;
-    margin-bottom: 4px;
-    font-size: 20px;
-}
-
-.content_style_classify_hr {
-    width: 113px;
-    margin-left: 124px;
-}
-
-.style_classify__text {
-    width: 61px;
-    height: 20px;
-    line-height: 20px;
-    font-size: 16px;
-    margin-top: 14px;
-    margin-bottom: 14px;
-}
-
-.style_classify__text_hr {
-    width: 61px;
-    margin-left: 28px;
-    height: 1px;
-    border-top: solid #ACC0D8 1px;
-}
-
-.hr {
-    height: 1px;
-    border-top: solid #ACC0D8 1px;
-}
-
-.text_margin {
-    margin-left: 28px;
-    margin-right: 33px;
-}
-
-.text_hr_long {
-    width: 360px;
-    height: 1px;
-    margin-left: 0px;
-    border-top: solid #ACC0D8 1px;
-}
-
-.text_hr_short {
-    width: 237px;
-    margin-left: 0px;
-}
-
-/*---------------------------------*/
-/*-----------阅读排行组件部分------------*/
-.content_rank_box {
-    /* height: 700px; */
-    width: 1200px;
-    margin-left: 50px;;
-}
-
-.content_rank_read {
-    margin: 30px 0 20px 30px;
-}
-
-.rank_read_box {
-    margin: 0 0 0 30px;
-    width: 570px;
-    /* height: 640px; */
-}
-
-.rank_read_size {
-    height: 40px;
-    width: 120px;
-    text-align: left;
-    font-size: 20px;
-    /* margin: 20px 0 10px 0; */
-    line-height: 40px;
-}
-
-.rank_more_size {
-    width: 57px;
-    height: 27px;
-    font-size: 12px;
-    margin-left: 85px;
-    margin-top: 30px;
-    margin-bottom: 10px;
-    line-height: 27px;
-}
-
-.rank_read_content_size {
-    height: 20px;
-    width: 178px;
-    text-align: left;
-    font-size: 14px;
-    line-height: 20px;
-    margin-top: 3px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
 
-.rank_read_number_size {
-    height: 30px;
-    width: 60px;
-    text-align: left;
-    font-size: 20px;
-    margin-left: 27px;
-    line-height: 30px;
-    margin-top: 3px;
-}
-
-.content_rank_hot {
-    margin: 30px 0 20px 0;
-    height: 650px;
-    width: 120px;
-    text-align: left;
-    font-size: 28px;
-}
-
-/*---------------------------------*/
-/*------------讨论期待--------------*/
-.discuss_expect_hr {
-    margin: 0;
-    width: 1198px;
-    text-align: center;
-    height: 1px;
-    border-top: solid #ACC0D8 1px;
-}
-
-.content_discuss_expect_box {
-    /* height: 360px; */
-    width: 1200px;
-}
-
-.discuss_expect_box {
-    margin: 0 30px 0 0;
-    width: 570px;
-    height: 360px;
-}
-
-.discuss_expect_size {
-    height: 50px;
-    width: 120px;
-    text-align: left;
-    font-size: 20px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    line-height: 50px;
-}
-
-.more_size {
-    width: 57px;
-    height: 27px;
-    font-size: 12px;
-    margin-left: 370px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    line-height: 27px;
-}
-
-.discuss_expect_content_size {
-    height: 50px;
-    width: 120px;
-    text-align: left;
-    font-size: 14px;
-    line-height: 50px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.discuss_expect_number_size {
-    height: 50px;
-    width: 400px;
-    text-align: left;
-    font-size: 14px;
-    line-height: 50px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-}
-
-.discuss_expect_good_size {
-    height: 50px;
-    width: 60px;
-    text-align: left;
-    font-size: 14px;
-    line-height: 50px;
-    margin-left: 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-}
-
-/*---------------------------------*/
-/*--------------书库组件Storebody-------------------*/
-
-.store_box {
-
-    width: 1200px;
-    margin: 0 auto;
-}
-
-.store_hr {
-    margin: 0 0 0 0;
-    width: 1198px;
-    text-align: center;
-}
-
-.store_box_classify {
-    height: 120px;
-}
-
-.classify_detail {
-    width: 80px;
-    height: 37px;
-    line-height: 37px;
-    text-align: left;
-}
-
-.classify_margin {
-    margin: 20px 0 0 0;
-}
-
-.sort_detail {
-    width: 120px;
-    height: 37px;
-    line-height: 37px;
-    text-align: left;
-}
-
-.sort_font {
-    font-size: 18px;
-    font-weight: 700;
-}
-
-.sort_margin {
-    margin: 50px 0 8px 0;
-}
-
-.sort_type {
-    width: 80px;
-    text-align: left;
-}
-
-.sort_bookname {
-    width: 140px;
-    text-align: center;
-}
-
-.sort_status {
-    width: 50px;
-    text-align: center;
-}
-
-.sort_author {
-    width: 100px;
-    text-align: right;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.sort_hits {
-    width: 100px;
-    text-align: center;
-}
-
-.sort_overtime {
-    width: 140px;
-    text-align: center;
-}
-
-.sort_intr {
-    width: 590px;
-
-}
-
-.sort_intr_content {
-    width: 590px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    text-align: left;
-}
-
-.sort_all_margin {
-    margin: 30px 0 30px 0;
-}
-
-/*---------------------------------*/
-/*-------------book组件部分--------------------*/
-
-
-.book_box {
-    width: 1200px;
-    margin: auto;
-}
-.comment_box {
-    width: 1200px;
-
-}
-
-.book_title {
-    font-size: 30px;
-    font-weight: bold;
-
-}
-
-.book_title_box_width {
+    .header_label_box {
+        font-size: 16px;
+        /*    !!!!!!*//*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    /*----------------------------------------------*/
+    /*----------------App-footer 底部----------------*/
+    /*-----------------------------------------------------------*/
+    /*-----------风格分类组件部分------------*/
+    .style_hide {
+        display: none;
+    }
 
-    width: 1200px;
-    margin: 20px 0 60px 0;
+    .content_classify_image {
+        background-color: white;
+        display: none;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
 
-}
 
-.book_title_box {
-    display: inline-block;
-
-    font-size: 16px;
-    border-bottom: 1px #ccc dotted;
-}
+    .hr {
+        height: 1px;
+        border-top: solid #ACC0D8 1px;
 
-.book_info {
-    justify-content: center;
-    margin: 20px 0 30px 0;
-}
+        /*    !!!!!!*//*    !!!!!!*/
+    }
 
-.info_box {
-    padding-left: 30px;
-}
 
-.content_box_margin {
-    margin: 20px 0;
-}
+    /*---------------------------------*/
+    /*-----------阅读排行组件部分------------*/
+    .content_rank_box {
+        /*    !!!!!!*//*    !!!!!!*/
+    }
 
-/*.content_box {*/
-/*    font-size: 25px;*/
 
-/*}*/
+    .rank_read_box {
+        /*    !!!!!!*//*    !!!!!!*/
+    }
 
-.content_posit {
-    color: grey;
-}
+    .rank_read_size {
+        /*font-weight: bold;*/
+        /*    !!!!!!*//*    !!!!!!*/
+    }
 
-/*---------------------------------*/
-/*-------------BookContent组件--------------------*/
-.book_content_box {
-    width: 1200px;
-    margin: auto;
+    .rank_more_size {
+        height: 27px;
+        font-size: 12px;
+        line-height: 27px;
+        /*    !!!!!!*//*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .rank_read_content_size {
+        font-size: 14px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .rank_read_number_size {
+
+        font-size: 12px;
+        text-align: center;
+
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    /*---------------------------------*/
+    /*------------讨论期待--------------*/
+    .comment_font {
+        font-size: 14px;
+    }
 
-}
+    .comment_font_more {
+        font-size: 12px;
+    }
 
-.content_width {
-    width: 100%;
-}
+    /*---------------------------------*/
+    /*--------------书库组件Storebody-------------------*/
+    .sort_intr_content {
+        overflow: hidden;
+        text-overflow: ellipsis;
 
-.book_chapter_name {
-    font-size: 30px;
-    font-weight: bold;
-    margin: 30px 0 20px 0;
-}
+        /*    !!!!!!*//*    !!!!!!*/
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
 
-.chapter_info {
-    justify-content: center;
-    margin: 20px 0 30px 0;
-}
+    }
 
-.book_content_bottom {
-    margin: 50px 0 30px 0;
+    .store_content_bottom {
 
-}
+        border: solid #ACC0D8 1px;
+        border-radius: 5px;
 
-.bottom_center {
-    margin: 0 auto;
-    font-size: 20px;
-    font-weight: bold;
-}
+    }
 
-.book_content {
-    text-align: left;
-    font-size: 20px;
-}
+    /*---------------------------------*/
+    /*-------------book组件部分--------------------*/
+    .book_title {
+        font-size: 20px;
+        font-weight: bold;
+        /*    !!!!!!*//*    !!!!!!*/
+
+    }
+
 
-/*---------------------------------*/
-/*---------------------------------*/
-/*------------------注册--------------*/
-.width_container {
-    width: 50%;
-}
+    .book_title_box {
+        display: inline-block;
+
+        font-size: 16px;
+        border-bottom: 1px #ccc dotted;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
 
+    .book_info {
+        justify-content: center;
+        margin: 10px 0 0 0;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .info_box_author {
 
+        text-align: right;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .info_box_time {
+        text-align: left;
+    }
 
-.form-signin .checkbox {
-    font-weight: 400;
-}
+    .info_box_num {
+        text-align: left;
+    }
+
+    .content_box_margin {
+        margin: 0;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
 
-.form-signin .form-control {
-    position: relative;
-    box-sizing: border-box;
-    height: auto;
-    padding: 10px;
-    font-size: 16px;
-}
+    /*.content_box {*/
+    /*    font-size: 25px;*/
+    /*}*/
+    .content_posit {
+        color: grey;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
 
-.form-signin .form-control:focus {
-    z-index: 2;
-}
+    /*---------------------------------*/
+    /*-------------BookContent组件--------------------*/
+    .book_chapter_name {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 10px 0 10px 0;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .book_content_bottom {
+        margin: 0 0 20px 0;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    .book_content {
+        text-align: left;
+        font-size: 14px;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    /*---------------------------------*/
+    /*------------------注册--------------*/
+
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+
+    /*-----------------------------------------*/
+    /*------------公用--------------------*/
+    body {
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+
+
+    /*-------------------------------*/
+    /*------------App-header 头部-------------------*/
+    .header_content {
+        margin-top: 10px;
+        height: 70px;
+        /*    !!!!!!*/
+    }
+
+
+    .header_content_titile {
+        color: #993300;
+        font-family: "宋体";
+        font-weight: bolder;
+        font-size: 42px;
+        height: 60px;
+        text-align: left;
+        /*    !!!!!!*//*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    .header_label_box {
+        font-size: 16px;
+        /*    !!!!!!*//*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    /*----------------------------------------------*/
+    /*----------------App-footer 底部----------------*/
+    /*-----------------------------------------------------------*/
+    /*-----------风格分类组件部分------------*/
+    .content_classify_image {
+        background-color: white;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    .hr {
+        height: 1px;
+        border-top: solid #ACC0D8 1px;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    /*---------------------------------*/
+    /*-----------阅读排行组件部分------------*/
+    .content_rank_box {
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    .rank_read_box {
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .rank_read_size {
+        height: 40px;
+        font-size: 20px;
+        line-height: 40px;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .rank_more_size {
+        height: 27px;
+        font-size: 12px;
+        line-height: 27px;
+        /*    !!!!!!*//*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .rank_read_content_size {
+        height: 20px;
+        font-size: 16px;
+        line-height: 20px;
+        margin-top: 3px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .rank_read_number_size {
+        height: 30px;
+        font-size: 20px;
+        line-height: 30px;
+        margin-top: 3px;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    /*---------------------------------*/
+    /*------------讨论期待--------------*/
+    /*---------------------------------*/
+    /*--------------书库组件Storebody-------------------*/
+    .sort_intr_content {
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        /*    !!!!!!*//*    !!!!!!*/
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+
+    }
+
+
+    /*---------------------------------*/
+    /*-------------book组件部分--------------------*/
+    .book_title {
+        font-size: 30px;
+        font-weight: bold;
+        /*    !!!!!!*//*    !!!!!!*/
+
+    }
+
+
+    .book_title_box {
+        display: inline-block;
+
+        font-size: 16px;
+        border-bottom: 1px #ccc dotted;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .book_info {
+        justify-content: center;
+        margin: 20px 0 30px 0;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .info_box {
+        padding-left: 30px;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .content_box_margin {
+        margin: 20px 0;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    /*.content_box {*/
+    /*    font-size: 25px;*/
+    /*}*/
+    .content_posit {
+        color: grey;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    /*---------------------------------*/
+    /*-------------BookContent组件--------------------*/
+    .book_chapter_name {
+        font-size: 30px;
+        font-weight: bold;
+        margin: 30px 0 20px 0;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .book_content_bottom {
+        margin: 50px 0 30px 0;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    .book_content {
+        text-align: left;
+        font-size: 20px;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    /*---------------------------------*/
+    /*------------------注册--------------*/
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+
+    /*-----------------------------------------*/
+    /*------------公用--------------------*/
+    body {
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+
+
+    /*-------------------------------*/
+    /*------------App-header 头部-------------------*/
+    .header_content {
+        margin-top: 10px;
+        height: 70px;
+        /*    !!!!!!*/
+    }
+
+
+    .header_content_titile {
+        color: #993300;
+        font-family: "宋体";
+        font-weight: bolder;
+        font-size: 42px;
+        height: 60px;
+        text-align: left;
+        /*    !!!!!!*//*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    .header_label_box {
+        font-size: 16px;
+        /*    !!!!!!*//*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    /*----------------------------------------------*/
+    /*----------------App-footer 底部----------------*/
+    /*-----------------------------------------------------------*/
+    /*-----------风格分类组件部分------------*/
+    .content_classify_image {
+        background-color: white;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    .hr {
+        height: 1px;
+        border-top: solid #ACC0D8 1px;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    /*---------------------------------*/
+    /*-----------阅读排行组件部分------------*/
+    .content_rank_box {
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    .rank_read_box {
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .rank_read_size {
+        height: 40px;
+        font-size: 20px;
+        line-height: 40px;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .rank_more_size {
+        height: 27px;
+        font-size: 12px;
+        line-height: 27px;
+        /*    !!!!!!*//*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .rank_read_content_size {
+        height: 20px;
+        font-size: 16px;
+        line-height: 20px;
+        margin-top: 3px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .rank_read_number_size {
+        height: 30px;
+        font-size: 20px;
+        line-height: 30px;
+        margin-top: 3px;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    /*---------------------------------*/
+    /*------------讨论期待--------------*/
+    /*---------------------------------*/
+    /*--------------书库组件Storebody-------------------*/
+    .sort_intr_content {
+        width: 590px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: left;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    /*---------------------------------*/
+    /*-------------book组件部分--------------------*/
+    .book_title {
+        font-size: 30px;
+        font-weight: bold;
+        /*    !!!!!!*//*    !!!!!!*/
+
+    }
+
+
+    .book_title_box {
+        display: inline-block;
+
+        font-size: 16px;
+        border-bottom: 1px #ccc dotted;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .book_info {
+        justify-content: center;
+        margin: 20px 0 30px 0;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .info_box {
+        padding-left: 30px;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .content_box_margin {
+        margin: 20px 0;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    /*.content_box {*/
+    /*    font-size: 25px;*/
+    /*}*/
+    .content_posit {
+        color: grey;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    /*---------------------------------*/
+    /*-------------BookContent组件--------------------*/
+    .book_chapter_name {
+        font-size: 30px;
+        font-weight: bold;
+        margin: 30px 0 20px 0;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .book_content_bottom {
+        margin: 50px 0 30px 0;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    .book_content {
+        text-align: left;
+        font-size: 20px;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    /*---------------------------------*/
+    /*------------------注册--------------*/
+
+
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+
+    /*-----------------------------------------*/
+    /*------------公用--------------------*/
+    body {
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+
+
+    /*-------------------------------*/
+    /*------------App-header 头部-------------------*/
+    .header_content {
+        margin-top: 10px;
+        height: 70px;
+        /*    !!!!!!*/
+    }
+
+
+    .header_content_titile {
+        color: #993300;
+        font-family: "宋体";
+        font-weight: bolder;
+        font-size: 42px;
+        height: 60px;
+        text-align: left;
+        /*    !!!!!!*//*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    .header_label_box {
+        font-size: 16px;
+        /*    !!!!!!*//*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    /*----------------------------------------------*/
+    /*----------------App-footer 底部----------------*/
+    /*-----------------------------------------------------------*/
+    /*-----------风格分类组件部分------------*/
+    .content_classify_image {
+        background-color: white;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    .hr {
+        height: 1px;
+        border-top: solid #ACC0D8 1px;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    /*---------------------------------*/
+    /*-----------阅读排行组件部分------------*/
+    .content_rank_box {
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    .rank_read_box {
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .rank_read_size {
+        height: 40px;
+        font-size: 20px;
+        line-height: 40px;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .rank_more_size {
+        height: 27px;
+        font-size: 12px;
+        line-height: 27px;
+        /*    !!!!!!*//*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .rank_read_content_size {
+        height: 20px;
+        font-size: 16px;
+        line-height: 20px;
+        margin-top: 3px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .rank_read_number_size {
+        height: 30px;
+        font-size: 20px;
+        line-height: 30px;
+        margin-top: 3px;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    /*---------------------------------*/
+    /*------------讨论期待--------------*/
+    /*---------------------------------*/
+    /*--------------书库组件Storebody-------------------*/
+    .sort_intr_content {
+        width: 590px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: left;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    /*---------------------------------*/
+    /*-------------book组件部分--------------------*/
+    .book_title {
+        font-size: 30px;
+        font-weight: bold;
+        /*    !!!!!!*//*    !!!!!!*/
+
+    }
+
+
+    .book_title_box {
+        display: inline-block;
+
+        font-size: 16px;
+        border-bottom: 1px #ccc dotted;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .book_info {
+        justify-content: center;
+        margin: 20px 0 30px 0;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .info_box {
+
+        text-align: center;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .content_box_margin {
+        margin: 20px 0;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    /*.content_box {*/
+    /*    font-size: 25px;*/
+    /*}*/
+    .content_posit {
+        color: grey;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    /*---------------------------------*/
+    /*-------------BookContent组件--------------------*/
+    .book_chapter_name {
+        font-size: 30px;
+        font-weight: bold;
+        margin: 30px 0 20px 0;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .book_content_bottom {
+        margin: 50px 0 30px 0;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    .book_content {
+        text-align: left;
+        font-size: 20px;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    /*---------------------------------*/
+    /*------------------注册--------------*/
+
+}
+
+@media screen and (min-width: 1200px) {
+
+
+    /*-----------------------------------------*/
+    /*------------公用--------------------*/
+    body {
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+
+
+    /*-------------------------------*/
+    /*------------App-header 头部-------------------*/
+    .header_content {
+        margin-top: 10px;
+        height: 70px;
+        /*    !!!!!!*/
+    }
+
+
+    .header_content_titile {
+        color: #993300;
+        font-family: "宋体";
+        font-weight: bolder;
+        font-size: 42px;
+        height: 60px;
+        text-align: left;
+        /*    !!!!!!*//*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    .header_label_box {
+        font-size: 16px;
+        /*    !!!!!!*//*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    /*----------------------------------------------*/
+    /*----------------App-footer 底部----------------*/
+    /*-----------------------------------------------------------*/
+    /*-----------风格分类组件部分------------*/
+    .content_classify_image {
+        background-color: white;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    .hr {
+        height: 1px;
+        border-top: solid #ACC0D8 1px;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    /*---------------------------------*/
+    /*-----------阅读排行组件部分------------*/
+    .content_rank_box {
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    .rank_read_box {
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .rank_read_size {
+        height: 40px;
+        font-size: 20px;
+        line-height: 40px;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .rank_more_size {
+        height: 27px;
+        font-size: 12px;
+        line-height: 27px;
+        /*    !!!!!!*//*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .rank_read_content_size {
+        height: 20px;
+        font-size: 16px;
+        line-height: 20px;
+        margin-top: 3px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .rank_read_number_size {
+        height: 30px;
+        font-size: 20px;
+        line-height: 30px;
+        margin-top: 3px;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    /*---------------------------------*/
+    /*------------讨论期待--------------*/
+    /*---------------------------------*/
+    /*--------------书库组件Storebody-------------------*/
+    .sort_intr_content {
+        width: 590px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: left;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    /*---------------------------------*/
+    /*-------------book组件部分--------------------*/
+    .book_title {
+        font-size: 30px;
+        font-weight: bold;
+        /*    !!!!!!*//*    !!!!!!*/
+
+    }
+
+
+    .book_title_box {
+        display: inline-block;
+
+        font-size: 16px;
+        border-bottom: 1px #ccc dotted;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .book_info {
+        justify-content: center;
+        margin: 20px 0 30px 0;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .info_box_author {
+
+        text-align: right;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .info_box_num {
+        text-align: center;
+    }
+
+    .info_box_time {
+
+        text-align: left;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .content_box_margin {
+        margin: 20px 0;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    /*.content_box {*/
+    /*    font-size: 25px;*/
+    /*}*/
+    .content_posit {
+        color: grey;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    /*---------------------------------*/
+    /*-------------BookContent组件--------------------*/
+    .book_chapter_name {
+        font-size: 30px;
+        font-weight: bold;
+        margin: 30px 0 20px 0;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .book_content_bottom {
+        margin: 50px 0 30px 0;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+
+    .book_content {
+        text-align: left;
+        font-size: 20px;
+        /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    /*---------------------------------*/
+    /*------------------注册--------------*/
 
-.form-signin input[type="email"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
 }
 
-.form-signin input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-.form-control{
-    margin-bottom:20px;
-}
-.replay_cotent{
-    margin: 50px 0;
-}
-/*------------------------------*/

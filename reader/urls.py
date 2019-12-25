@@ -1,4 +1,4 @@
-from django.urls import path,re_path
+from django.urls import path, re_path
 from . import views
 
 app_name = 'reader'
@@ -8,6 +8,8 @@ urlpatterns = [
     re_path(r'store/', views.StoreView.as_view(), name='store'),
     re_path(r'^book/(?P<book_id>[0-9]+)/$', views.BookView.as_view(), name='book'),
     re_path(r'^book/(?P<book_id>[0-9]+)/(?P<chapter_id>[0-9]+)/$', views.ChapterView.as_view(), name='chapter'),
+    re_path(r'^category/(?P<category>[a-z]+)/$', views.CategoryView.as_view(), name='category'),
+    re_path(r'^sort/(?P<sort>[a-z_]+)/$', views.SortView.as_view(), name='sort'),
     # path('api/v1/article/', views.ArticleView.as_view(), name='article'),
     # path('api/v1/artchapter/', views.ArtChapterView.as_view(), name='art_chapter'),
     # path('api/v1/chaptercontent/', views.ChapteContentView.as_view(), name='chap_cont'),

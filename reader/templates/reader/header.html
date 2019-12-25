@@ -1,41 +1,37 @@
-<div class="container">
+<div class="container ">
 
-    <div class="row header_content">
-        <div class="col-xl-4  header_content_titile m-auto">哦啦看书</div>
-
-        <form class="form-inline col-xl-4 m-auto">
-            <div class="input-group col-xl-9  mb-6">
-                <input type="text" class="form-control">
-            </div>
-            <button type="submit" class="col-xl-3 btn btn-danger btn-sm">提交</button>
+    <div class="row header_content no-gutters ">
+{#        <div class="col-2  col-sm-2 col-md-2 col-lg-2 col-xl-2">asda</div>#}
+        <h4 class="col-4  col-xl-4  header_content_titile m-auto">哦啦看书</h4>
+        <form class="col-8 col-sm-2 col-xl-4 input-group  m-auto">
+            <input class="col-9 input-group col-xl-9 form-control mb-6 ">
+            <button type="submit" class="col-3 col-xl-3 btn btn-danger btn-sm">提交</button>
         </form>
-
         {% if user.is_authenticated %}
-            <div class="col-xl-2 text-right m-auto"><a href="">{{ user.username }}</a></div>
+            <div class="col-6 col-sm-2 col-xl-2 text-right m-auto"><a href="">{{ user.username }}</a></div>
 
-            <div class="col-xl-2 text-center m-auto"><a href="{% url 'accounts:logout' %}">退出登录</a>
+            <div class="col-6 col-sm-2 col-xl-2 text-center m-auto"><a href="{% url 'accounts:logout' %}">退出登录</a>
             </div>
         {% else %}
-            <div class="col-xl-2 text-right m-auto"><a href="{% url 'accounts:login' %}">登录</a>
+            <div class="col-6 col-sm-2 col-xl-2 text-center m-auto"><a href="{% url 'accounts:login' %}">登录</a>
             </div>
-            <div class="col-xl-2 text-center m-auto"><a
+            <div class="col-6 col-sm-2 col-xl-2 text-center m-auto"><a
                     href="{% url 'accounts:register' %}">注册</a>
             </div>
         {% endif %}
 
     </div>
     <div class="hr"></div>
-
-    <div class="row header_label_box mt-xl-3 mb-xl-3">
-        <div class="col-xl-2 text-center m-auto">
+    <div class="row header_label_box mt-2 mb-2 mt-xl-3 mb-xl-3 no-gutters">
+        <div class="col-2 col-xl-2 text-center m-auto">
             <a href="{% url 'reader:index' %}">
                 首页</a></div>
-        <div class="col-xl-2 text-center m-auto">排行</div>
-        <div class="col-xl-2 text-center m-auto">交流</div>
-        <div class="col-xl-2 text-center m-auto">
+        <div class="col-2 col-xl-2 text-center m-auto">排行</div>
+        <div class="col-2 col-xl-2 text-center m-auto">交流</div>
+        <div class="col-2 col-xl-2 text-center m-auto">
             <a href="{% url 'reader:store' %}">
                 书库</a></div>
-        <div class="col-xl-4 text-center m-auto">个人中心</div>
+        <div class="col-2 col-xl-4 text-center m-auto">我的</div>
 
     </div>
     <div class="hr"></div>

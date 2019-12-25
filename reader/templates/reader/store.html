@@ -7,64 +7,65 @@
 {% block content %}
     <div class='container header_label_box'>
         <div class='row'>
-            <div class='col-lg-1'>分类</div>
-            <div class='col-lg-1'>流行</div>
-            <div class='col-lg-1'>全部</div>
-            <div class='col-lg-1'>玄幻</div>
-            <div class='col-lg-1'>奇幻</div>
-            <div class='col-lg-1'>科幻</div>
-            <div class='col-lg-1'>武侠</div>
-            <div class='col-lg-1'>仙侠</div>
-            <div class='col-lg-1'>都市</div>
-            <div class='col-lg-1'>言情</div>
-            <div class='col-lg-1'>历史</div>
+            <div class='col-xl-1'>分类</div>
+            <div class='col-2 col-xl-1 '>流行</div>
+            <div class='col-xl-1 some_display_none'>全部</div>
+            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' 'qihuan' %}">玄幻</a></div>
+            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' 'xuanhuan' %}">奇幻</a></div>
+            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' 'kehuan' %}">科幻</a></div>
+            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' 'wuxia' %}">武侠</a></div>
+            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' 'xianxia' %}">仙侠</a></div>
+            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' 'dushi' %}">都市</a></div>
+            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' 'yanqing' %}">言情</a></div>
+            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' 'lishi' %}">历史</a></div>
         </div>
         <div class='row'>
-            <div class='col-lg-1'></div>
-            <div class='col-lg-1 mt-lg-3'>经典</div>
-            <div class='col-lg-1 mt-lg-3'>全部</div>
-            <div class='col-lg-1 mt-lg-3'>名著</div>
-            <div class='col-lg-1 mt-lg-3'>神话</div>
-            <div class='col-lg-1 mt-lg-3'>小说</div>
-            <div class='col-lg-1 mt-lg-3'>诸子</div>
-            <div class='col-lg-1 mt-lg-3'>诗词</div>
-            <div class='col-lg-1 mt-lg-3'>史书</div>
+            <div class='col-xl-1 some_display_none'></div>
+            <div class='col-2 col-xl-1 mt-xl-3 '>经典</div>
+            <div class='col-2 col-xl-1 mt-xl-3 some_display_none'>全部</div>
+            <div class='col-2 col-xl-1 mt-xl-3'><a href="{% url 'reader:category' 'mingzhu' %}">名著</a></div>
+            <div class='col-2 col-xl-1 mt-xl-3'><a href="{% url 'reader:category' 'shenhua' %}">神话</a></div>
+            <div class='col-2 col-xl-1 mt-xl-3'><a href="{% url 'reader:category' 'xiaoshuo' %}">小说</a></div>
+            <div class='col-2 col-xl-1 mt-xl-3'><a href="{% url 'reader:category' 'zhuzi' %}">诸子</a></div>
+            <div class='col-2 col-xl-1 mt-xl-3'><a href="{% url 'reader:category' 'shici' %}">诗词</a></div>
+            <div class='col-2 col-xl-1 mt-xl-3'><a href="{% url 'reader:category' 'shishu' %}">史书</a></div>
         </div>
         <div class='row'>
-            <div class='col-lg-2 mt-lg-3'>排序</div>
-            <div class='col-lg-2 mt-lg-3'>总点击</div>
-            <div class='col-lg-2 mt-lg-3'>总推荐</div>
-            <div class='col-lg-2 mt-lg-3'>总收藏</div>
-            <div class='col-lg-2 mt-lg-3'>总讨论</div>
-            <div class='col-lg-2 mt-lg-3'>更新时间</div>
+            <div class='col-xl-1 mt-xl-3'>排序</div>
+            <div class='col-3 col-xl-1 mt-xl-3'><a href="{% url 'reader:sort' 'art_hits' %}"> 总点击</a></div>
+            <div class='col-3 col-xl-1 mt-xl-3'><a href="{% url 'reader:sort' 'art_hots' %}">总推荐</a></div>
+            <div class='col-3 col-xl-1 mt-xl-3'><a href="#">总收藏</a></div>
+            <div class='col-3 col-xl-1 mt-xl-3'><a href="{% url 'reader:sort' 'comment_nums' %}">总讨论</a></div>
+            <div class='col-4 col-xl-1 mt-xl-3'><a href="{% url 'reader:sort' 'last_mod_time' %}">更新时间</a></div>
         </div>
-        <div class='row'>
-            <div class='col-lg-1 mt-lg-3'>类别</div>
-            <div class='col-lg-1 mt-lg-3'>书名</div>
-            <div class='col-lg-1 mt-lg-3'>状态</div>
-            <div class='col-lg-1 mt-lg-3'>作者</div>
-            <div class='col-lg-1 mt-lg-3'>阅读量</div>
-            <div class='col-lg-1 mt-lg-3'>添加时间</div>
-            <div class='col-lg-6 mt-lg-3'>简介</div>
+        <div class="hr"></div>
+        <div class='row mt-2 mb-2 mt-xl-3 mb-xl-3 no-gutters'>
+            <div class='col-2 col-xl-1 some_display_none'>类别</div>
+            <div class='col-7 col-xl-1'>书名</div>
+            <div class='col-2 col-xl-1 some_display_none'>状态</div>
+            <div class='col-2 col-xl-1'>作者</div>
+            <div class='col-3 col-xl-1'>阅读量</div>
+            <div class='col-4 col-xl-1 some_display_none'>添加时间</div>
+            <div class='col-2 col-xl-6 some_display_none'>简介</div>
         </div>
-        <hr/>
+        <div class="hr"></div>
+        {% if articles %}
+            {% for item in articles %}
+                <div class='row no-gutters mt-3 comment_font store_content_bottom'>
+                    <div class='col-2 col-xl-1 mb-xl-3 some_display_none'>{{ item.art_type }}</div>
+                    <div class='col-7 col-xl-1  mb-xl-3'>
+                        <a href="{% url 'reader:book' item.id %}">
+                            {{ item.art_name }}</a></div>
+                    <div class='col-2 col-xl-1 mb-xl-3 some_display_none'>{{ item.art_status }}</div>
+                    <div class='col-2 col-xl-1 mb-xl-3 '>{{ item.art_author }}</div>
+                    <div class='col-3 col-xl-1 mb-xl-3 '>{{ item.art_hits }}</div>
+                    <div class='col-2 col-xl-1 mb-xl-3 some_display_none'>{{ item.created_time |date:'Y-m-d' }}</div>
+                    <div class='col-12 col-xl-6 mb-xl-3 sort_intr_content'>{{ item.art_introduction }}</div>
+                </div>
 
-        {% for item in articles %}
-
-            <div class='row no-gutters'>
-
-                <div class='col-lg-1 mb-lg-3'>{{ item.art_type }}</div>
-                <div class='col-lg-1  mb-lg-3'>
-                    <a href="{% url 'reader:book' item.id %}">
-                        {{ item.art_name }}</a></div>
-                <div class='col-lg-1 mb-lg-3'>{{ item.art_status }}</div>
-                <div class='col-lg-1 mb-lg-3'>{{ item.art_author }}</div>
-                <div class='col-lg-1 mb-lg-3'>{{ item.art_hits }}</div>
-                <div class='col-lg-1 mb-lg-3'>{{ item.created_time |date:'Y-m-d' }}</div>
-                <div class='col-lg-6 mb-lg-3 sort_intr_content'>{{ item.art_introduction }}</div>
-            </div>
-
-        {% endfor %}
-
+            {% endfor %}
+        {% else %}
+            <div class="row text-center m-5">暂无内容</div>
+        {% endif %}
     </div>
 {% endblock content %}

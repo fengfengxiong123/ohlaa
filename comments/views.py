@@ -47,7 +47,7 @@ class CommentPostView(FormView):
         book_id = self.kwargs['book_id']
         article = Article.objects.get(pk=book_id)
         if not self.request.user.is_authenticated:
-            return render(self.request,'accounts/login.html')
+            return render(self.request, 'accounts/login.html')
             # email = form.cleaned_data['email'] # 如匿名用户，使用邮箱和用户名创建用户！！！！
             # username = form.cleaned_data['name']
             # user = get_user_model().objects.get_or_create(username=username, email=email, is_active=0)[0]
@@ -58,5 +58,12 @@ class CommentPostView(FormView):
             parent_comment = Comment.objects.get(pk=form.cleaned_data['parent_comment_id'])
             comment.parent_comment = parent_comment
         comment.save(True)
+
+        # 增加评论数量
+        if article.comment_nums:
+            article.comment_nums += 1
+        else:
+            article.comment_nums = 1
+        article.save()
         return HttpResponseRedirect(
             '%s#div-comment-%d' % (article.get_absolute_url(), comment.pk))  # 锚点到id=div-commen-x的元素

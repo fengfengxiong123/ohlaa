@@ -67,9 +67,13 @@ class ArtChapter(models.Model):
     chapter_content = HTMLField('文章内容')
     article = models.ForeignKey(Article, verbose_name="文章", on_delete=models.CASCADE, null=True)
     chapter_add_date = models.DateTimeField(auto_now=True)
+    last_mod_time = models.DateTimeField('修改时间', auto_now_add=True)
     word_number = models.IntegerField(verbose_name='字数', default=0, null=True)
     chapter_hits = models.IntegerField(verbose_name='点击', default='0', null=True)
     chapter_hots = models.IntegerField(verbose_name='推荐', default='0', null=True)
 
     class Meta:
         ordering = ['id']
+
+    def get_absolute_url(self):
+        return reverse('reader:chapter', kwargs={'book_id': self.article_id, 'chapter_id': self.id})

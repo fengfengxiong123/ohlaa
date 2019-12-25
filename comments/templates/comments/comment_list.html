@@ -9,7 +9,7 @@
             textare_obj.focus();
         }
     </script>
-    <h4>留言</h4>
+    <div class="comment_font my-2">留言</div>
     <div class="hr"></div>
 
     <div class="row ">
@@ -19,16 +19,17 @@
                     <li class="media">
                         <div class="media-left">
                             <a href="#">
-                                <img class="media-object rounded-circle" src="{{ item.author.avatar }}"
+                                <img class="media-object rounded-circle some_display_none"
+                                     src="{{ item.author.avatar }}"
                                      alt="{{ item.author.nickname }}">
                             </a>
                         </div>
                         <div id="div-comment-{{ item.id }}" class="media-body">
-                            <h4 class="media-heading">{{ item.author.username }}</h4>
+                            <div class="media-heading comment_font">{{ item.author.username }}</div>
 
-                            <p>{{ item.body }}</p>
+                            <div class="comment_font">{{ item.body }}</div>
 
-                            <div class="ds-comment-footer">
+                            <div class="comment_font">
                                 <span>{{ item.author.created_time }}</span>&nbsp;
                                 <a href="javascript:void(0)" onclick="jump({{ item.id }})">
                                     <span class="glyphicon glyphicon-comment" aria-hidden="true">回复</span>
@@ -102,12 +103,12 @@
         {% csrf_token %}
         {{ form.non_field_errors }}
         {% for field in form %}
-            <div class="form-group mt-lg-4">
+            <div class="form-group mt-lg-4 mb-1 ">
                 {{ field }}
                 {{ field.errors }}
             </div>
         {% endfor %}
-        <button type="submit" class="btn btn-primary">提交</button>
+        <button type="submit" class="btn btn-primary mb-2">提交</button>
     </form>
 
 </div>

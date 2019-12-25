@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'tinymce',  # 富文本编辑器
     'captcha',  # 图形验证码
     'servermanage',
+    'django.contrib.sitemaps',  # 网站地图
 
 ]
 
