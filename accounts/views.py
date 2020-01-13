@@ -21,11 +21,43 @@ from django.utils.http import is_safe_url
 
 logger = logging.getLogger(__name__)
 
+from django_redis import get_redis_connection
+
+from reader.models import ArtChapter, Article
+from accounts.models import HistoryData
+from django.http import HttpResponseRedirect
+
 
 # Create your views here.
 class HistoryView(APIView):
-    def get(self, *args, **kwargs):
-        return Response('ok')
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        if not user.is_authenticated:
+            return HttpResponseRedirect('/login/')
+        # 连接redis
+        con = get_redis_connection('default')
+        history_key = 'history_%d' % user.id
+
+        # 获取redis中的历史记录数据 {book_id:chapter_id,}
+        history_dict = con.hgetall(history_key)
+
+        art_cha_list = []
+        for k, v in history_dict.items():  # 计算进度，将书、章存入列表
+            article_obj = Article.objects.get(id=k)
+            chapter_obj = ArtChapter.objects.get(id=v)
+            # 计算第一章id和最后一章id
+            article_first_id = article_obj.artchapter_set.all().first().id
+            article_last_id = article_obj.artchapter_set.all().last().id
+            # 当计算前章节所占百分比（进度）
+            numerator = int(v.decode('utf-8')) - int(article_first_id)
+            if numerator == 0:  # 阅读第一章时，分子应该为1
+                numerator = 1
+            denominator = int(article_last_id) - int(article_first_id)
+            progress = '{:.1f}%'.format(numerator / denominator * 100)
+            art_cha_list.append({'article': article_obj, 'chapter': chapter_obj, 'progress': progress})
+        context = {'art_cha_list': art_cha_list}
+
+        return render(request, 'accounts/history.html', context)
 
 
 class RegisterView(FormView):
@@ -107,8 +139,6 @@ class LoginView(FormView):
         return super(LoginView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        print(kwargs)
-
         redirect_to = self.request.GET.get(self.redirect_field_name)
         if redirect_to is None:
             redirect_to = '/'
@@ -118,14 +148,23 @@ class LoginView(FormView):
     def form_valid(self, form):
 
         form = AuthenticationForm(data=self.request.POST, request=self.request)
-        print(form)
         if form.is_valid():
             from accounts.utils import cache
             if cache and cache is not None:
                 cache.clear()
             logger.info(self.redirect_field_name)
-
             auth.login(self.request, form.get_user())
+
+            # 登录后获取历史记录存入redis#
+            user = self.request.user
+            history_key = 'history_%d' % user.id
+            con = get_redis_connection('default')
+            # <QuerySet [{'book_id': 1, 'chapter_id': 2}, {'book_id': 2, 'chapter_id': 15}]>
+            dict_set = HistoryData.objects.filter(history_key=history_key).order_by('-last_mod_time').values(
+                'book_id', 'chapter_id')
+            for d in dict_set:
+                # 从数据库取出历史记录，存入redis
+                con.hmset(history_key, {d['book_id']: d['chapter_id']})
 
             return super(LoginView, self).form_valid(form)
 
@@ -150,7 +189,8 @@ class LogoutView(RedirectView):
 
     def get(self, request, *args, **kwargs):
         from .utils import cache
-        cache.clear()
+
+        cache.clear()  # .clear()删除字典中所有元素
         auth.logout(request)
         return super(LogoutView, self).get(request, *args, **kwargs)
 

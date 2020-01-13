@@ -172,3 +172,18 @@ SERVER_EMAIL = os.environ.get('DJANGO_EMAIL_USER')
 
 MEDIA_URL = '/media/'  # url/media/avatars/default.png可以访问到
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 文件上传后将自动保存的目录，media为跟目录，模型中upload_to为拼接目录
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379',
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+             "PASSWORD": "",
+        },
+    },
+}
+
+REDIS_TIMEOUT=7*24*60*60
+CUBES_REDIS_TIMEOUT=60*60
+NEVER_REDIS_TIMEOUT=365*24*60*60

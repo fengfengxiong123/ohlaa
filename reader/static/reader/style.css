@@ -9,13 +9,36 @@
         padding: 0;
         position: relative;
     }
-
+    .text_align_center {
+        text-align: center;
+    }
+    .text_align_right {
+        text-align: right;
+    }
     .some_display_none {
         display: none;
     }
 
+    .font_16 {
+        font-size: 16px;
+    }
+
+    .font_12 {
+        font-size: 12px;
+    }
+
+    .font_10 {
+        font-size: 10px;
+    }
 
     /*-------------------------------*/
+    /*------------history 头部-------------------*/
+    .history_content {
+        /*border:1px solid red;*/
+        background-color: rgb(237, 241, 244);
+        text-align: center;
+    }
+
     /*------------App-header 头部-------------------*/
     .header_content {
         margin-top: 10px;
@@ -78,14 +101,13 @@
     }
 
     .rank_more_size {
-        height: 27px;
         font-size: 12px;
-        line-height: 27px;
+        text-align: right;
         /*    !!!!!!*//*    !!!!!!*//*    !!!!!!*/
     }
 
     .rank_read_content_size {
-        font-size: 14px;
+        font-size: 16px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -104,7 +126,7 @@
     /*---------------------------------*/
     /*------------讨论期待--------------*/
     .comment_font {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .comment_font_more {
@@ -116,7 +138,7 @@
     .sort_intr_content {
         overflow: hidden;
         text-overflow: ellipsis;
-
+        font-size: 14px;
         /*    !!!!!!*//*    !!!!!!*/
         display: -webkit-box;
         -webkit-line-clamp: 4;
@@ -125,6 +147,7 @@
     }
 
     .store_content_bottom {
+        padding: 3px;
 
         border: solid #ACC0D8 1px;
         border-radius: 5px;
@@ -134,8 +157,8 @@
     /*---------------------------------*/
     /*-------------book组件部分--------------------*/
     .book_title {
-        font-size: 20px;
-        font-weight: bold;
+        font-size: 18px;
+
         /*    !!!!!!*//*    !!!!!!*/
 
     }
@@ -151,7 +174,6 @@
 
     .book_info {
         justify-content: center;
-        margin: 10px 0 0 0;
         /*    !!!!!!*//*    !!!!!!*/
     }
 
@@ -199,7 +221,7 @@
 
     .book_content {
         text-align: left;
-        font-size: 14px;
+        font-size: 16px;
         /*    !!!!!!*//*    !!!!!!*/
     }
 
@@ -587,6 +609,9 @@
         position: relative;
     }
 
+    .text_align_center {
+        text-align: center;
+    }
 
     /*-------------------------------*/
     /*------------App-header 头部-------------------*/
@@ -773,6 +798,12 @@
 
 
     /*-------------------------------*/
+    /*------------history 头部-------------------*/
+    .display_none_1200 {
+        display: none;
+    }
+
+    /*-------------------------------*/
     /*------------App-header 头部-------------------*/
     .header_content {
         margin-top: 10px;
@@ -827,9 +858,9 @@
     }
 
     .rank_read_size {
-        height: 40px;
-        font-size: 20px;
-        line-height: 40px;
+
+        font-size: 16px;
+
         /*    !!!!!!*//*    !!!!!!*/
     }
 
@@ -946,6 +977,10 @@
         text-align: left;
         font-size: 20px;
         /*    !!!!!!*//*    !!!!!!*/
+    }
+
+    .xl_display_none {
+        display: none;
     }
 
     /*---------------------------------*/

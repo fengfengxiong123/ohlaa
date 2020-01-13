@@ -1,0 +1,39 @@
+{% extends 'reader/base.html' %}
+{% block head %}
+{% endblock %}
+{% block content %}
+    <div class="container">
+        {% if art_cha_list %}
+            <h5 class="row my-xl-3 some_display_none no-gutters">历史记录</h5>
+
+            <div class="row no-gutters some_display_none">
+                <div class="col-xl-3">章节</div>
+                <div class="col-xl-3">书名</div>
+
+                <div class="col-xl-2">作者</div>
+                <div class="col-xl-2">最后更新</div>
+                <div class="col-xl-2">当前进度</div>
+            </div>
+
+            <div class="row p-1 p-xl-0  ">
+                {% for item in art_cha_list reversed %}
+                    <div class="row col-5  col-xl-12 no-gutters ml-3 ml-xl-0 my-2  history_content">
+                        <div class="col-xl-3 my-xl-auto my-2 font_10"><a
+                                href="{% url 'reader:chapter' item.article.id  item.chapter.id %}">{{ item.chapter.chapter_name }}</a>
+                        </div>
+                        <div class="col-xl-3 my-xl-auto font-weight-bold my-1 "><a
+                                href="{% url 'reader:book' item.article.id %}">{{ item.article.art_name }}</a></div>
+                        <div class="col-xl-2 my-xl-auto my-2 text_align_right text_align_center font_10">{{ item.article.art_author }}</div>
+                        <div class="col-xl-2 my-xl-auto mt-4 text_align_right text_align_center font_10">{{ item.chapter.last_mod_time|date:'y/m/d h:m' }}</div>
+                        <div class="col-xl-2 my-xl-auto my-2 progress">
+                            <div class="progress-bar bg-info "
+                                 style="width:{{ item.progress }}">{{ item.progress }}</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <h5 class="my-xl-3">暂无历史记录</h5>
+        {% endif %}
+    </div>
+{% endblock %}

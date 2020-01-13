@@ -5,11 +5,11 @@
     <meta name="keywords" content="哦啦，哦啦网，哦啦阅读网,免费阅读，完本小说，免费完本，免费小说，古典文学，中国古典名著，经典小说，写作,小说排行,读书">
 {% endblock head %}
 {% block content %}
-    <div class="container">
+    <div class="container font_16">
 
         <div class="row mb-1 mt-1 mb-xl-3 mt-xl-3">
             <div class="col-12 col-xl-6 row  no-gutters">
-                <div class="col-12 col-xl-12 text-center m-auto style_hide">风格分类</div>
+                <div class="col-12 col-xl-12 text-center m-auto style_hide">风格分类{{ debug }}</div>
                 <div class="col-12 col-xl-12 row m-auto">
                     <div class="col-3 col-xl-3 text-center m-auto some_display_none">流行</div>
                     <div class="col-3 col-xl-3 text-center m-auto"><a
@@ -29,7 +29,7 @@
                     </div>
                     <div class="col-3 col-xl-3 text-center m-auto"><a href="{% url 'reader:category' 'lishi' %}">历史</a>
                     </div>
-                    <div class="col-3 col-xl-3 text-center m-auto some_display_none" ></div>
+                    <div class="col-3 col-xl-3 text-center m-auto some_display_none"></div>
                 </div>
 
                 <div class="col-12 col-xl-12 row m-auto">
@@ -75,17 +75,17 @@
             </div>
         </div>
         <div class="hr"></div>
-        <div class="row content_rank_box mt-1 mb-1 mt-xl-3 mb-xl-3">
+        <div class="row content_rank_box mt-1 mb-1 mt-xl-3 mb-xl-3 no-gutters">
 
             <div class="col-6 col-xl-6 rank_read_box">
-                <div class="row mb-xl-3 ">
-                    <div class="col-8 col-xl-9 rank_read_size">阅读排行</div>
-                    <div class="col-4 col-xl-3 rank_more_size m-auto">更多></div>
+                <div class="row mb-xl-3 no-gutters my-1">
+                    <div class="col-7 col-xl-9 rank_read_size">阅读排行</div>
+                    <div class="col-5 col-xl-3 rank_more_size m-auto">更多></div>
                 </div>
-
+                <div class="hr"></div>
                 {% for item in hits %}
-                    <div class="row">
-                        <div class="col-8 col-xl-9 rank_read_content_size">
+                    <div class="row no-gutters">
+                        <div class="col-8 col-xl-9 mt-xl-3 rank_read_content_size">
                             <a href="{% url 'reader:book' item.id %}">{{ item.art_name }}</a>
                         </div>
                         <div class="col-4 col-xl-3 rank_read_number_size">{{ item.art_hits }}</div>
@@ -93,14 +93,15 @@
                 {% endfor %}
             </div>
 
-            <div class="col-6 col-xl-6 rank_read_box">
-                <div class="row mb-xl-3">
-                    <div class="col-8 col-xl-9 rank_read_size">热度排行</div>
-                    <div class="col-4 col-xl-3 rank_more_size m-auto">更多></div>
+            <div class="col-6 col-xl-6 rank_read_box no-gutters">
+                <div class="row mb-xl-3 no-gutters my-1">
+                    <div class="col-7 col-xl-9 rank_read_size">热度排行</div>
+                    <div class="col-5 col-xl-3 rank_more_size m-auto">更多></div>
                 </div>
+                <div class="hr"></div>
                 {% for item in hots %}
-                    <div class="row">
-                        <div class="col-8 col-xl-9 rank_read_content_size">
+                    <div class="row no-gutters">
+                        <div class="col-8 col-xl-9 mt-xl-3 rank_read_content_size">
                             <a href="{% url 'reader:book' item.id %}">
                                 {{ item.art_name }}</a></div>
                         <div class="col-4 col-xl-3 rank_read_number_size">{{ item.art_hots }}</div>
@@ -109,22 +110,23 @@
 
             </div>
         </div>
-        <div class="hr"></div>
 
 
-        <div class="row no-gutters mb-2 mt-2">
-            <div class="row col-12 col-xl-6 no-gutters">
-                <div class="col-9 col-xl-9 mt-xl-3 mb-xl-3 ">热门评论</div>
-                <div class="col-3 col-xl-3 mt-xl-3 mb-xl-3 text-right comment_font_more ">更多></div>
-                <div class="col-xl-12 hr mt-2"></div>
+        <div class="row no-gutters mb-3 mt-3">
+            <div class="row col-12 col-xl-6 no-gutters ">
+                <div class="col-xl-12 hr "></div>
+                <div class="col-9 col-xl-9 rank_read_size my-xl-3 my-1">热门评论</div>
+                <div class="col-3 col-xl-3 rank_more_size  m-auto">更多></div>
+                <div class="col-xl-12 hr "></div>
                 <div class="row col-12 col-xl-12 no-gutters comment_font">
-                    <div class="col-12 col-xl-12 mt-xl-3">
+                    <div class="col-12 col-xl-12 mt-xl-3 pl-4 pr-4">
                         {% for item in arts_nums %}
-                            <div class="row no-gutters mb-xl-3">
+                            <div class="row no-gutters mb-xl-3 ">
                                 <div class="col-9 col-xl-3"><a
                                         href="{% url 'reader:book' item.obj.id %}">{{ item.obj.art_name }}</a>
                                 </div>
-                                <div class="col-3 col-xl-2 text-right comment_font_more">评论{{ item.obj.comment_nums }}</div>
+                                <div class="col-3 col-xl-2 text-right comment_font_more">
+                                    评论{{ item.obj.comment_nums }}</div>
                                 <div class="col-12 col-xl-6 some_display_none">
                                     <div class="row no-gutters">
                                         {% for comment in item.comments %}
@@ -140,19 +142,21 @@
                 </div>
 
             </div>
-            <div class="row col-12 col-xl-6 no-gutters some_display_none">
-                <div class="col-9 col-xl-9 mt-xl-3 mb-xl-3">作品相关</div>
-                <div class="col-3 col-xl-3 mt-xl-3 mb-xl-3 ">更多></div>
-                <div class="col-xl-12 hr mt-2"></div>
-                <div class="row col-12 col-xl-12 no-gutters">
-                    <div class="col-12 col-xl-12 mt-xl-3">
+            <div class="row col-12 col-xl-6 no-gutters some_display_none ">
+                <div class="col-xl-12 hr "></div>
+                <div class="col-9 col-xl-9 rank_read_size my-xl-3 my-1">热门评论</div>
+                <div class="col-3 col-xl-3 rank_more_size  m-auto">更多></div>
+                <div class="col-xl-12 hr "></div>
+                <div class="row col-12 col-xl-12 no-gutters comment_font">
+                    <div class="col-12 col-xl-12 mt-xl-3 pl-4 pr-4">
                         {% for item in arts_nums %}
-                            <div class="row no-gutters mb-xl-3">
+                            <div class="row no-gutters mb-xl-3 ">
                                 <div class="col-9 col-xl-3"><a
                                         href="{% url 'reader:book' item.obj.id %}">{{ item.obj.art_name }}</a>
                                 </div>
-                                <div class="col-3 col-xl-2 text-right">评论{{ item.obj.comment_nums }}</div>
-                                <div class="col-12 col-xl-6 comment_content">
+                                <div class="col-3 col-xl-2 text-right comment_font_more">
+                                    评论{{ item.obj.comment_nums }}</div>
+                                <div class="col-12 col-xl-6 some_display_none">
                                     <div class="row no-gutters">
                                         {% for comment in item.comments %}
                                             <div class="col-12 col-xl-6 text-right"><a
@@ -165,6 +169,7 @@
                         {% endfor %}
                     </div>
                 </div>
+
             </div>
 
 

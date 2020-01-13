@@ -29,3 +29,17 @@ class OhlaaUser(AbstractUser):
         verbose_name = '用户'
         verbose_name_plural = verbose_name
         get_latest_by = 'id'
+
+
+class HistoryData(models.Model):
+    history_key = models.CharField('用户标识', max_length=30, blank=True)
+    book_id = models.IntegerField('书id', blank=True)
+    chapter_id = models.IntegerField('章id', blank=True)
+    created_time = models.DateTimeField('创建时间', auto_now_add=True)
+    last_mod_time = models.DateTimeField('修改时间', default=now)
+
+    class Meta:
+        ordering = ['history_key']
+        verbose_name = '历史记录'
+        verbose_name_plural = verbose_name
+        get_latest_by = 'id'

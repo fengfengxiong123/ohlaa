@@ -16,4 +16,7 @@ class CommentForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['body'].widget.attrs.update({'class': 'col-xl-12 col-12','rows':"3"})
+        self.fields['body'].widget.attrs.update({'class': 'col-xl-12 col-12', 'rows': "3"})
+
+
+

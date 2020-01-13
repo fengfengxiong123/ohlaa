@@ -7,8 +7,11 @@ from comments.models import Comment
 from .pagination import MyPageNumberPagination
 from .serializer import ArticleSerializer
 import json
-from accounts.models import OhlaaUser
+from accounts.models import OhlaaUser, HistoryData
 from comments.forms import CommentForm
+from django.views.decorators.cache import cache_control
+from django_redis import get_redis_connection
+from django.core.paginator import Page, Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
@@ -34,9 +37,28 @@ class StoreView(APIView):
     """书库：简介去首尾空格"""
 
     def get(self, request, *args, **kwargs):
-        articles = Article.objects.all().values('art_name', 'created_time', 'art_author', 'art_type', 'art_status',
+        try:
+            p = kwargs['p']
+        except:
+            p = 1
+        print(kwargs, p)
+        articles = Article.objects.all().values('art_label', 'art_name', 'created_time', 'art_author', 'art_type',
+                                                'art_status',
                                                 'art_introduction', 'art_hits', 'id')
-        context = {'articles': articles}
+        paginator = Paginator(articles, 50)
+        try:
+            page = paginator.page(p)
+        except PageNotAnInteger:
+            page = paginator.page(1)
+        except EmptyPage:
+            page = paginator.page(paginator.num_pages)
+        else:
+            page=paginator.page(1)
+
+        # print(page.object_list,page.numberv,page.paginator)
+        # print(paginator.count,paginator.num_pages,paginator.page_range)
+        context = {'articles': page.object_list, 'page': page}
+        # print(context)
         return render(request, 'reader/store.html', context)
 
 
@@ -46,10 +68,18 @@ class CategoryView(APIView):
         category = self.kwargs['category']
         articles = Article.objects.all().filter(art_type=category).values('art_name', 'created_time', 'art_author',
                                                                           'art_type', 'art_status',
-                                                                         'art_introduction', 'art_hits', 'id')
+                                                                          'art_introduction', 'art_hits', 'id')
 
         context = {'articles': articles}
         return render(request, 'reader/store.html', context)
+
+
+class RankView(APIView):
+    def get(self, request, *args, **kwargs):
+        articles = Article.objects.order_by('-art_hits')[0:10]
+        context = {'articles': articles}
+        print(context)
+        return render(request, 'reader/rank.html', context)
 
 
 class SortView(APIView):
@@ -60,10 +90,11 @@ class SortView(APIView):
             sort = '-' + sort
             articles = Article.objects.all().order_by(sort).values('art_name', 'created_time', 'art_author',
                                                                    'art_type', 'art_status',
-                                                                   'art_introduction', 'art_hits', 'id')
+                                                                   'art_introduction', 'art_hits', 'id', )
         else:
             articles = [{'art_name': '暂无内容'}]
         context = {'articles': articles}
+        print(context)
 
         return render(request, 'reader/store.html', context)
 
@@ -125,12 +156,8 @@ class BookView(APIView):
         return render(request, 'reader/book.html', context)
 
 
-from django.views.decorators.cache import cache_control
-
-
 class ChapterView(APIView):
 
-    @cache_control(must_revalidate=True, max_age=60)
     def get(self, request, **kwargs):
         book_id = kwargs['book_id']
         chapter_id = kwargs['chapter_id']
@@ -154,6 +181,30 @@ class ChapterView(APIView):
         previous = ArtChapter.objects.filter(article_id=book_id, id__lt=chapter_id).order_by('-id').first()  # __gt 小于
         next_article = ArtChapter.objects.filter(article_id=book_id, id__gt=chapter_id).order_by('id').first()
         context = {'article': article, 'chapter': chapter[0], 'previous': previous, 'next': next_article}
+
+        # 使用redis添加历史记录
+        user = request.user
+        # print(user.is_authenticated)
+
+        if user.is_authenticated:
+            con = get_redis_connection('default')
+            cart_key = 'cart_%d' % user.id
+            cart_count = con.hlen(cart_key)  # 获取数量
+            history_key = 'history_%d' % user.id
+            # 删除哈希history_key中的 字段book_id
+            con.hdel(history_key, book_id)
+            # 创建哈希history_key
+            con.hmset(history_key, {book_id: chapter_id})
+            context.update(cart_count=cart_count)
+
+            # 点击章节时，保存历史记录至数据库#
+            obj = HistoryData.objects.filter(history_key=history_key, book_id=book_id)
+            if obj:  # 查询数据库是否有这个 历史记录 有则更新，无则创建
+                obj.update(chapter_id=chapter_id)
+
+            else:
+                HistoryData.objects.create(history_key=history_key, book_id=book_id, chapter_id=chapter_id)
+
         return render(request, 'reader/chapter.html', context)
 
 
@@ -240,3 +291,21 @@ class ArticleView(APIView):
             print(ser.errors)
             print('验证失败未保存')
             return HttpResponse(ser.errors)
+
+
+class SearchView(APIView):
+    def post(self, request, *args, **kwargs):
+        q = request.POST.get('q')
+        if len(q) >= 4:
+            q = q[0:4]
+        articles = Article.objects.filter(art_name__contains=q)
+        context = {'articles': articles}
+        return render(request, 'reader/store.html', context)
+
+# from .models import ShiCi
+#
+#
+# class ShiCiView(APIView):
+#     def get(self, request):
+#         obj = ShiCi.objects.values('title', 'id')
+#         return render(request, 'reader/shici.html', {'shicis': obj})

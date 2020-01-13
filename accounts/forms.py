@@ -8,12 +8,12 @@ class RegisterForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(RegisterForm, self).__init__(*args, **kwargs)
 
-        self.fields['username'].widget = widgets.TextInput(attrs={'placeholder': '请输入用户名', 'class': 'form-control'})
-        self.fields['email'].widget = widgets.EmailInput(attrs={'placeholder': '电子邮件', 'class': 'form-control'})
+        self.fields['username'].widget = widgets.TextInput(attrs={'placeholder': '请输入用户名', 'class': 'form-control my-xl-3'})
+        self.fields['email'].widget = widgets.EmailInput(attrs={'placeholder': '电子邮件', 'class': 'form-control my-xl-3'})
         self.fields['password1'].widget = widgets.PasswordInput(
-            attrs={'placeholder': '输入密码', 'class': 'form-control'})
+            attrs={'placeholder': '输入密码', 'class': 'form-control my-xl-3'})
         self.fields['password2'].widget = widgets.PasswordInput(
-            attrs={'placeholder': '再次输入密码', 'class': 'form-control'})
+            attrs={'placeholder': '再次输入密码', 'class': 'form-control my-xl-3'})
 
     def clean_email(self):
         email = self.cleaned_data['email']
@@ -29,6 +29,6 @@ class RegisterForm(UserCreationForm):
 class LoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(LoginForm, self).__init__(*args, **kwargs)
-        self.fields['username'].widget = widgets.TextInput(attrs={'placeholder': '输入用户名', 'class': 'form-control mb-xl-4'})
+        self.fields['username'].widget = widgets.TextInput(attrs={'placeholder': '输入用户名', 'class': 'form-control my-xl-3'})
         self.fields['password'].widget = widgets.PasswordInput(
-            attrs={'placeholder': '输入密码', 'class': 'form-control mb-xl-4'})
+            attrs={'placeholder': '输入密码', 'class': 'form-control my-xl-3'})

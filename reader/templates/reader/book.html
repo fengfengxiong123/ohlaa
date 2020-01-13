@@ -8,32 +8,36 @@
 
     <div class='container'>
         <div class='row no-gutters'>
-            <div>当前位置：</div>
+            <div class="some_display_none">当前位置：</div>
             <div><a href="{% url 'reader:index' %}">首页></a></div>
-            <div><a href="{% url 'reader:category' article.art_type  %}">{{ article.art_type }}></a></div>
+            <div><a href="{% url 'reader:category' article.art_type %}">{{ article.art_type }}></a></div>
             <div>{{ article.art_name }}</div>
         </div>
-        <div class='col-xl-12 text-center book_title'>{{ article.art_name }}</div>
+        <div class='col-xl-12 text-center book_title some_display_none'>{{ article.art_name }}</div>
         <div class="col-xl-12 text-center some_display_none">开始阅读</div>
 
         <div class='row  book_info no-gutters'>
             <div class='col-xl-4 info_box_author some_display_none'>作者:{{ article.art_author }}</div>
 
-            <div class='col-xl-4 col-12 info_box_num'>更新:{{ last_chap.chapter_add_date| date:'Y-m-d h:m:s' }}</div>
+            <div class='col-xl-4 col-12 info_box_num mt-1'>更新:{{ last_chap.chapter_add_date| date:'Y-m-d h:m:s' }}</div>
 
-            <div class='col-xl-4 col-12 info_box_time'>最新章节:<a href="{% url 'reader:chapter' last_chap.article.id last_chap.id %}">{{ last_chap.chapter_name }}</a></div>
+            <div class='col-xl-4 col-12 info_box_time mt-1'>最新章节:<a
+                    href="{% url 'reader:chapter' last_chap.article.id last_chap.id %}">{{ last_chap.chapter_name }}</a>
+            </div>
         </div>
 
-        <div class='row content_box_margin no-gutters'>
+        <div class='row content_box_margin mt-1 no-gutters'>
             <div class='col-2 col-xl-1 '>正文:</div>
             <div class='col-3 col-xl-1 content_posit'>共{{ chapter_num }}章</div>
             <div class='col-7 col-xl-10 content_posit'>共{{ article.word_number }}字</div>
         </div>
         <div class="row no-gutters">
             {% for item in chapters %}
-                <div class='col-6 col-xl-4 mb-xl-4 book_title_box '>
+                <div class='col-6 text-center col-xl-4 mb-xl-4 book_title_box mt-1 '>
+
                     <a href="{% url 'reader:chapter' article.id item.id %}">
-                        {{ item.chapter_name }}</a>
+                       {% if item.section_name %}{{item.section_name }}|{{ item.chapter_name }}{% else %}{{ item.chapter_name }}{% endif %}
+                    </a>
                 </div>
             {% endfor %}
         </div>

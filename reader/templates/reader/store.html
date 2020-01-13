@@ -6,7 +6,7 @@
 {% endblock head %}
 {% block content %}
     <div class='container header_label_box'>
-        <div class='row'>
+        <div class='row no-gutters'>
             <div class='col-xl-1'>分类</div>
             <div class='col-2 col-xl-1 '>流行</div>
             <div class='col-xl-1 some_display_none'>全部</div>
@@ -19,7 +19,7 @@
             <div class='col-2 col-xl-1'><a href="{% url 'reader:category' 'yanqing' %}">言情</a></div>
             <div class='col-2 col-xl-1'><a href="{% url 'reader:category' 'lishi' %}">历史</a></div>
         </div>
-        <div class='row'>
+        <div class='row no-gutters'>
             <div class='col-xl-1 some_display_none'></div>
             <div class='col-2 col-xl-1 mt-xl-3 '>经典</div>
             <div class='col-2 col-xl-1 mt-xl-3 some_display_none'>全部</div>
@@ -30,7 +30,7 @@
             <div class='col-2 col-xl-1 mt-xl-3'><a href="{% url 'reader:category' 'shici' %}">诗词</a></div>
             <div class='col-2 col-xl-1 mt-xl-3'><a href="{% url 'reader:category' 'shishu' %}">史书</a></div>
         </div>
-        <div class='row'>
+        <div class='row no-gutters'>
             <div class='col-xl-1 mt-xl-3'>排序</div>
             <div class='col-3 col-xl-1 mt-xl-3'><a href="{% url 'reader:sort' 'art_hits' %}"> 总点击</a></div>
             <div class='col-3 col-xl-1 mt-xl-3'><a href="{% url 'reader:sort' 'art_hots' %}">总推荐</a></div>
@@ -51,14 +51,14 @@
         <div class="hr"></div>
         {% if articles %}
             {% for item in articles %}
-                <div class='row no-gutters mt-3 comment_font store_content_bottom'>
+                <div class='row no-gutters my-3 comment_font store_content_bottom'>
                     <div class='col-2 col-xl-1 mb-xl-3 some_display_none'>{{ item.art_type }}</div>
-                    <div class='col-7 col-xl-1  mb-xl-3'>
+                    <div class='col-7 col-xl-1  mb-xl-3 text-center'>
                         <a href="{% url 'reader:book' item.id %}">
                             {{ item.art_name }}</a></div>
                     <div class='col-2 col-xl-1 mb-xl-3 some_display_none'>{{ item.art_status }}</div>
-                    <div class='col-2 col-xl-1 mb-xl-3 '>{{ item.art_author }}</div>
-                    <div class='col-3 col-xl-1 mb-xl-3 '>{{ item.art_hits }}</div>
+                    <div class='col-3 col-xl-1 mb-xl-3 m-auto font_12'>{{ item.art_author }}</div>
+                    <div class='col-2 col-xl-1 mb-xl-3 m-auto font_12'>{{ item.art_hits }}</div>
                     <div class='col-2 col-xl-1 mb-xl-3 some_display_none'>{{ item.created_time |date:'Y-m-d' }}</div>
                     <div class='col-12 col-xl-6 mb-xl-3 sort_intr_content'>{{ item.art_introduction }}</div>
                 </div>
@@ -67,5 +67,16 @@
         {% else %}
             <div class="row text-center m-5">暂无内容</div>
         {% endif %}
+        {% if page.has_previous %}
+            <div><a href="{% url 'reader:store_list' page.previous_page_number %}">上一页{{ page.has_previous }}</a></div>
+        {% else %}
+            <div>首页</div>
+        {% endif %}
+        {% if  page.has_next %}
+            <div><a href="{% url 'reader:store_list' page.next_page_number %}">下一页{{ page.has_next }}</a></div>
+        {% else %}
+            <div>末页</div>
+        {% endif %}
     </div>
+
 {% endblock content %}

@@ -21,79 +21,144 @@
     {# 响应式布局#}
     <link rel="stylesheet" type="text/css" href="{% static 'reader/style.css' %}">
 
-
-    <title>标题</title>
-
-    <script>
-        var _hmt = _hmt || [];
-        (function () {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?cbdc0c05b5197a203d801d42f778485b";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
+{#        <script>#}
+{#            (function () {#}
+{#                var bp = document.createElement('script');#}
+{#                var curProtocol = window.location.protocol.split(':')[0];#}
+{#                if (curProtocol === 'https') {#}
+{#                    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';#}
+{#                } else {#}
+{#                    bp.src = 'http://push.zhanzhang.baidu.com/push.js';#}
+{#                }#}
+{#                var s = document.getElementsByTagName("script")[0];#}
+{#                s.parentNode.insertBefore(bp, s);#}
+{#            })();#}
+{#        </script>#}
+{##}
+{##}
+{#        <script>#}
+{#            var _hmt = _hmt || [];#}
+{#            (function () {#}
+{#                var hm = document.createElement("script");#}
+{#                hm.src = "https://hm.baidu.com/hm.js?cbdc0c05b5197a203d801d42f778485b";#}
+{#                var s = document.getElementsByTagName("script")[0];#}
+{#                s.parentNode.insertBefore(hm, s);#}
+{#            })();#}
+{#        </script>#}
 
 </head>
 
 <body>
-<div>
-    <!-- header -->
-{#    {% include 'reader/header.html' %}#}
-    <!-- 内容 -->
 
-    <div class='container '>
-        <div class='row no-gutters'>
-            <div>当前位置：</div>
-            <div><a href="{% url 'reader:index' %}" >首页></a></div>
-            <div><a href="{% url 'reader:category' article.art_type %}" >{{ article.art_type }}></a></div>
-            <div><a href="{% url 'reader:book' article.id %}" >{{ article.art_name }}></a></div>
-            <div>{{ chapter.chapter_name }}</div>
-        </div>
-        <div class='row  no-gutters'>
-            <div class='row '>
-                <div class='col-xl-12 text-center book_chapter_name'>{{ chapter.chapter_name }}</div>
+<!-- header -->
+<div class="container some_display_none">
 
-                <div class='row col-xl-12 no-gutters mb-1 mb-xl-3'>
+    <div class="row header_content no-gutters ">
+        {#        <div class="col-2  col-sm-2 col-md-2 col-lg-2 col-xl-2">asda</div>#}
+        <h4 class="col-4  col-xl-4  header_content_titile m-auto">哦啦看书</h4>
+        <form class="col-8 col-sm-2 col-xl-4 input-group  m-auto">
+            <input class="col-9 input-group col-xl-9 form-control mb-6 ">
+            <button type="submit" class="col-3 col-xl-3 btn btn-danger btn-sm">提交</button>
+        </form>
+        {% if user.is_authenticated %}
+            <div class="col-6 col-sm-2 col-xl-2 text-right m-auto"><a href="">{{ user.username }}</a></div>
 
-                    <div class='col-6 col-xl-5  info_box_author'>作者：{{ article.art_author }}</div>
-                    <div class='col-6 col-xl-2 info_box_num '>字数：{{ chapter.word_number }}</div>
-                    <div class='col-xl-5  info_box_time some_display_none'> 更新时间：{{ chapter.chapter_add_date|date:'Y-m-d' }}</div>
+            <div class="col-6 col-sm-2 col-xl-2 text-center m-auto"><a href="{% url 'accounts:logout' %}">退出登录</a>
+            </div>
+        {% else %}
+            <div class="col-6 col-sm-2 col-xl-2 text-center m-auto"><a href="{% url 'accounts:login' %}">登录</a>
+            </div>
+            <div class="col-6 col-sm-2 col-xl-2 text-center m-auto"><a
+                    href="{% url 'accounts:register' %}">注册</a>
+            </div>
+        {% endif %}
+
+    </div>
+    <div class="hr"></div>
+    <div class="row header_label_box mt-2 mb-2 mt-xl-3 mb-xl-3 no-gutters">
+        <div class="col-2 col-xl-2 text-center m-auto">
+            <a href="{% url 'reader:index' %}">
+                首页</a></div>
+        <div class="col-2 col-xl-2 text-center m-auto">排行</div>
+        <div class="col-2 col-xl-2 text-center m-auto">交流</div>
+        <div class="col-2 col-xl-2 text-center m-auto">
+            <a href="{% url 'reader:store' %}">
+                书库</a></div>
+        <div class="col-2 col-xl-4 text-center m-auto"><a href="{% url 'accounts:history' %}"> 历史记录</a></div>
+
+    </div>
+    <div class="hr"></div>
+</div>
+
+<!-- 内容 -->
+
+<div class='container '>
+    <div class='row no-gutters'>
+        <div>当前位置：</div>
+        <div><a href="{% url 'reader:index' %}">首页></a></div>
+        <div><a href="{% url 'reader:category' article.art_type %}">{{ article.art_type }}></a></div>
+        <div><a href="{% url 'reader:book' article.id %}">{{ article.art_name }}></a></div>
+        <div>{{ chapter.chapter_name }}</div>
+    </div>
+    <div class='row  no-gutters'>
+        <div class='row '>
+            <div class='col-xl-12 text-center book_chapter_name'>{{ chapter.chapter_name }}</div>
+
+            <div class='row col-xl-12 no-gutters mb-1 mb-xl-3'>
+
+                <div class='col-6 col-xl-5  info_box_author'>作者：{{ article.art_author }}</div>
+                <div class='col-6 col-xl-2 info_box_num '>字数：{{ chapter.word_number }}</div>
+                <div class='col-xl-5  info_box_time some_display_none'>
+                    更新时间：{{ chapter.chapter_add_date|date:'Y-m-d' }}</div>
+            </div>
+            <div class='col-12 col-xl-12 book_content '>{{ chapter.chapter_content | safe }}</div>
+
+
+            <div class='row col-xl-12 book_content_bottom '>
+                <div class='col-4 col-xl-4 text-right font-weight-bolder'>
+                    {% if previous is not None %}
+                        <a href="{% url 'reader:chapter' article.id previous.id %}">上章</a>
+                    {% else %}
+                        <a href="{% url 'reader:chapter' article.id chapter.id %}">首章</a>
+                    {% endif %}
                 </div>
-                <div class='col-12 col-xl-12 book_content '>{{ chapter.chapter_content | safe }}</div>
-
-
-                <div class='row col-xl-12 book_content_bottom '>
-                    <div class='col-4 col-xl-4 text-right font-weight-bolder'>
-                        {% if previous is not None %}
-                            <a href="{% url 'reader:chapter' article.id previous.id %}">上章</a>
-                        {% else %}
-                            <a href="{% url 'reader:chapter' article.id chapter.id %}">首章</a>
-                        {% endif %}
-                    </div>
-                    <div class='col-4 col-xl-4 text-center  font-weight-bolder'>
-                        <a href="{% url 'reader:book' article.id %}">目录</a>
-                    </div>
-                    <div class='col-4 col-xl-4 text-left font-weight-bolder '>
-                        {% if next is not None %}
-                            <a href='{% url 'reader:chapter' article.id next.id %}'>下章</a>
-                        {% else %}
-                            <a href='{% url 'reader:chapter' article.id chapter.id %}'>终章</a>
-                        {% endif %}
-                    </div>
+                <div class='col-4 col-xl-4 text-center  font-weight-bolder'>
+                    <a href="{% url 'reader:book' article.id %}">目录</a>
+                </div>
+                <div class='col-4 col-xl-4 text-left font-weight-bolder '>
+                    {% if next is not None %}
+                        <a href='{% url 'reader:chapter' article.id next.id %}'>下章</a>
+                    {% else %}
+                        <a href='{% url 'reader:chapter' article.id chapter.id %}'>终章</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- footer -->
-{#    {% include 'reader/footer.html' %}#}
-    <!-- bootstrap.js 依赖 jquery.js 和popper.js，因此在这里引入 -->
-    {#<script src="{% static 'jquery/jquery-3.3.1.js' %}"></script>#}
-    {#<script src="{% static 'jquery/kindeditor/kindeditor-all.js' %}"></script>#}
-    {#<script src="{% static 'popper/popper-1.14.4.js' %}"></script>#}
-    <!-- 引入bootstrap的js文件 -->
-    {#<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>#}
+<!-- footer -->
+<div class="  some_display_none ">
+    <div class="card-footer mt-xl-3 mt-1">
+        <div class="text-center ">意见建议</div>
+        {#            <div class="contact_text">客服中心</div>#}
+        {#            <div class="contact_text">版权服务</div>#}
+        {#            <div class="contact_text">公众号</div>#}
+        {#            <div class="contact_text">留言</div>#}
+        <div class="text-center p-lg-3">邮箱</div>
+        <div class="text-center">电话</div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-xl-12 text-center p-lg-5">Copyright©www.ohlaa.com</div>
+    </div>
+</div>
+<!-- bootstrap.js 依赖 jquery.js 和popper.js，因此在这里引入 -->
+{#<script src="{% static 'jquery/jquery-3.3.1.js' %}"></script>#}
+{#<script src="{% static 'jquery/kindeditor/kindeditor-all.js' %}"></script>#}
+{#<script src="{% static 'popper/popper-1.14.4.js' %}"></script>#}
+<!-- 引入bootstrap的js文件 -->
+{#<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>#}
 </div>
 </body>
 </html>

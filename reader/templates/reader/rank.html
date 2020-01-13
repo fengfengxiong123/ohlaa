@@ -1,0 +1,35 @@
+{% extends 'reader/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+
+        <div class='row mt-2 mb-2 mt-xl-3 mb-xl-3 no-gutters'>
+            <div class='col-2 col-xl-1 some_display_none'>类别</div>
+            <div class='col-7 col-xl-1'>书名</div>
+            <div class='col-2 col-xl-1 some_display_none'>状态</div>
+            <div class='col-2 col-xl-1'>作者</div>
+            <div class='col-3 col-xl-1'>阅读量</div>
+            <div class='col-4 col-xl-1 some_display_none'>添加时间</div>
+            <div class='col-2 col-xl-6 some_display_none'>简介</div>
+        </div>
+        <div class="hr"></div>
+        {% if articles %}
+            {% for item in articles %}
+                <div class='row no-gutters my-3 comment_font store_content_bottom'>
+                    <div class='col-2 col-xl-1 mb-xl-3 some_display_none'>{{ item.art_type }}</div>
+                    <div class='col-7 col-xl-1  mb-xl-3 text-center'>
+                        <a href="{% url 'reader:book' item.id %}">
+                            {{ item.art_name }}</a></div>
+                    <div class='col-2 col-xl-1 mb-xl-3 some_display_none'>{{ item.art_status }}</div>
+                    <div class='col-3 col-xl-1 mb-xl-3 m-auto font_12'>{{ item.art_author }}</div>
+                    <div class='col-2 col-xl-1 mb-xl-3 m-auto font_12'>{{ item.art_hits }}</div>
+                    <div class='col-2 col-xl-1 mb-xl-3 some_display_none'>{{ item.created_time |date:'Y-m-d' }}</div>
+                    <div class='col-12 col-xl-6 mb-xl-3 sort_intr_content'>{{ item.art_introduction }}</div>
+                </div>
+
+            {% endfor %}
+        {% else %}
+            <div class="row text-center m-5">暂无内容</div>
+        {% endif %}
+    </div>
+{% endblock %}

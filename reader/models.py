@@ -4,6 +4,9 @@ from tinymce.models import HTMLField  # 富文本
 from django.urls import reverse
 from django.utils.timezone import now
 
+class Label(models.Model):
+    name = models.CharField('标签名称', max_length=50)
+
 
 class Article(models.Model):
     """文章表（表1）"""
@@ -33,6 +36,7 @@ class Article(models.Model):
         ))
     ]
     art_type = models.CharField(max_length=200, choices=type_choices)
+    art_label = models.ManyToManyField(Label)
     art_status = models.CharField('状态', max_length=200, default="")
     art_introduction = models.CharField('简介', max_length=2000, default="")
     art_name_used = models.CharField('曾用名', max_length=200, default="")
@@ -61,9 +65,13 @@ class Article(models.Model):
         })
 
 
+
+
+
 class ArtChapter(models.Model):
     """文章章节内容表(表2）"""
     chapter_name = models.CharField('章名', max_length=200)
+    section_name = models.CharField('部分', max_length=200, null=True)
     chapter_content = HTMLField('文章内容')
     article = models.ForeignKey(Article, verbose_name="文章", on_delete=models.CASCADE, null=True)
     chapter_add_date = models.DateTimeField(auto_now=True)
@@ -77,3 +85,18 @@ class ArtChapter(models.Model):
 
     def get_absolute_url(self):
         return reverse('reader:chapter', kwargs={'book_id': self.article_id, 'chapter_id': self.id})
+
+# class ShiCi(models.Model):
+#     """诗词类"""
+#     title = models.CharField('题目', max_length=200)
+#     dynasty = models.CharField('朝代', max_length=10)
+#     author = models.CharField('作者', max_length=20)
+#     paragraphs = HTMLField('内容')
+#     created_time = models.DateTimeField('创建时间', default=now)
+#     last_mod_time = models.DateTimeField('修改时间', default=now)
+#
+#     class Meta:
+#         ordering = ['id']
+#
+#     def get_absolute_url(self):
+#         return reverse('reader:shici', )
