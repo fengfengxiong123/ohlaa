@@ -45,6 +45,7 @@ class StoreView(APIView):
         articles = Article.objects.all().values('art_label', 'art_name', 'created_time', 'art_author', 'art_type',
                                                 'art_status',
                                                 'art_introduction', 'art_hits', 'id')
+        print(p)
         paginator = Paginator(articles, 50)
         try:
             page = paginator.page(p)
@@ -302,10 +303,4 @@ class SearchView(APIView):
         context = {'articles': articles}
         return render(request, 'reader/store.html', context)
 
-# from .models import ShiCi
-#
-#
-# class ShiCiView(APIView):
-#     def get(self, request):
-#         obj = ShiCi.objects.values('title', 'id')
-#         return render(request, 'reader/shici.html', {'shicis': obj})
+

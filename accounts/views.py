@@ -26,6 +26,8 @@ from django_redis import get_redis_connection
 from reader.models import ArtChapter, Article
 from accounts.models import HistoryData
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse
+from .models import OhlaaUser
 
 
 # Create your views here.
@@ -195,9 +197,13 @@ class LogoutView(RedirectView):
         return super(LogoutView, self).get(request, *args, **kwargs)
 
 
-from django.http import HttpResponse
-from .models import OhlaaUser
-
+def upload(request):
+    if request.method == 'POST':
+        name = request.POST.get('username')
+        avatar = request.FILES.get('avatar')
+        OhlaaUser.objects.filter(username=name).update(avatar=avatar)
+        return HttpResponse('ok')
+    return render(request, 'accounts/upload.html')
 
 # def upload(request):
 #     if request.method == 'POST':
@@ -208,12 +214,3 @@ from .models import OhlaaUser
 #             return HttpResponse('ok')
 #         return render(request, 'accounts/login.html')
 #     return render(request, 'accounts/upload.html')
-
-
-def upload(request):
-    if request.method == 'POST':
-        name = request.POST.get('username')
-        avatar = request.FILES.get('avatar')
-        OhlaaUser.objects.filter(username=name).update(avatar=avatar)
-        return HttpResponse('ok')
-    return render(request, 'accounts/upload.html')
