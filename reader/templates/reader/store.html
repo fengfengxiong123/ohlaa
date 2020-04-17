@@ -10,25 +10,25 @@
             <div class='col-xl-1'>分类</div>
             <div class='col-2 col-xl-1 '>流行</div>
             <div class='col-xl-1 some_display_none'>全部</div>
-            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' 'qihuan' %}">玄幻</a></div>
-            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' 'xuanhuan' %}">奇幻</a></div>
-            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' 'kehuan' %}">科幻</a></div>
-            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' 'wuxia' %}">武侠</a></div>
-            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' 'xianxia' %}">仙侠</a></div>
-            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' 'dushi' %}">都市</a></div>
-            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' 'yanqing' %}">言情</a></div>
-            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' 'lishi' %}">历史</a></div>
+            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' '玄幻' %}">玄幻</a></div>
+            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' '奇幻' %}">奇幻</a></div>
+            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' '科幻' %}">科幻</a></div>
+            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' '武侠' %}">武侠</a></div>
+            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' '仙侠' %}">仙侠</a></div>
+            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' '都市' %}">都市</a></div>
+            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' '言情' %}">言情</a></div>
+            <div class='col-2 col-xl-1'><a href="{% url 'reader:category' '历史' %}">历史</a></div>
         </div>
         <div class='row no-gutters'>
             <div class='col-xl-1 some_display_none'></div>
             <div class='col-2 col-xl-1 mt-xl-3 '>经典</div>
             <div class='col-2 col-xl-1 mt-xl-3 some_display_none'>全部</div>
-            <div class='col-2 col-xl-1 mt-xl-3'><a href="{% url 'reader:category' 'mingzhu' %}">名著</a></div>
-            <div class='col-2 col-xl-1 mt-xl-3'><a href="{% url 'reader:category' 'shenhua' %}">神话</a></div>
-            <div class='col-2 col-xl-1 mt-xl-3'><a href="{% url 'reader:category' 'xiaoshuo' %}">小说</a></div>
-            <div class='col-2 col-xl-1 mt-xl-3'><a href="{% url 'reader:category' 'zhuzi' %}">诸子</a></div>
-            <div class='col-2 col-xl-1 mt-xl-3'><a href="{% url 'reader:category' 'shici' %}">诗词</a></div>
-            <div class='col-2 col-xl-1 mt-xl-3'><a href="{% url 'reader:category' 'shishu' %}">史书</a></div>
+            <div class='col-2 col-xl-1 mt-xl-3'><a href="{% url 'reader:category' '名著' %}">名著</a></div>
+            <div class='col-2 col-xl-1 mt-xl-3'><a href="{% url 'reader:category' '神话' %}">神话</a></div>
+            <div class='col-2 col-xl-1 mt-xl-3'><a href="{% url 'reader:category' '小说' %}">小说</a></div>
+            <div class='col-2 col-xl-1 mt-xl-3'><a href="{% url 'reader:category' '诸子' %}">诸子</a></div>
+            <div class='col-2 col-xl-1 mt-xl-3'><a href="{% url 'reader:category' '诗词' %}">诗词</a></div>
+            <div class='col-2 col-xl-1 mt-xl-3'><a href="{% url 'reader:category' '史书' %}">史书</a></div>
         </div>
         <div class='row no-gutters'>
             <div class='col-xl-1 mt-xl-3'>排序</div>
@@ -67,16 +67,18 @@
         {% else %}
             <div class="row text-center m-5">暂无内容</div>
         {% endif %}
-        {% if page.has_previous %}
-            <div><a href="{% url 'reader:store_list' page.previous_page_number %}">上一页{{ page.has_previous }}</a></div>
-        {% else %}
-            <div>首页</div>
-        {% endif %}
-        {% if  page.has_next %}
-            <div><a href="{% url 'reader:store_list' page.next_page_number %}">下一页{{ page.has_next }}</a></div>
-        {% else %}
-            <div>末页</div>
-        {% endif %}
+        <div class="row text-center">
+            {% if page.has_previous %}
+                <div class="col-6"><a href="{% url 'reader:store_list' page.previous_page_number %}">上一页</a></div>
+            {% else %}
+                <div class="col-6">首页</div>
+            {% endif %}
+            {% if  page.has_next %}
+                <div class="col-6"><a href="{% url 'reader:store_list' page.next_page_number %}">下一页</a></div>
+            {% else %}
+                <div class="col-6">末页</div>
+            {% endif %}
+        </div>
     </div>
 
 {% endblock content %}

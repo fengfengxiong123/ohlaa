@@ -21,7 +21,7 @@ class IndexView(APIView):
     def get(self, request):
         art_obj_hits = Article.objects.all().order_by('-art_hits')[0:10]
         art_obj_hots = Article.objects.all().order_by('-art_hots')[0:10]
-        art_obj_comm_num = Article.objects.all().order_by('-comment_nums')[0:5]
+        art_obj_comm_num = Article.objects.all().order_by('-comment_nums')[0:5]  # 评论数排名
 
         arts_nums = []
         for obj in art_obj_comm_num:
@@ -29,6 +29,8 @@ class IndexView(APIView):
             arts_nums.append({'obj': obj, 'comments': comment_objs})
 
         context = {'hits': art_obj_hits, 'hots': art_obj_hots, 'arts_nums': arts_nums}
+
+        obj = Article.objects.filter(art_type='mingzhu').update(art_type='名著')  # 修改数据库中数据art_type字段
 
         return render(request, 'reader/index.html', context)
 
@@ -38,23 +40,25 @@ class StoreView(APIView):
 
     def get(self, request, *args, **kwargs):
         try:
-            p = kwargs['p']
+            page_num = kwargs['page_num']
         except:
-            p = 1
-        print(kwargs, p)
+            page_num = 1
         articles = Article.objects.all().values('art_label', 'art_name', 'created_time', 'art_author', 'art_type',
                                                 'art_status',
                                                 'art_introduction', 'art_hits', 'id')
-        print(p)
-        paginator = Paginator(articles, 50)
+        paginator = Paginator(articles, 15)
         try:
-            page = paginator.page(p)
+            page = paginator.page(page_num)
+            print("try", page)
         except PageNotAnInteger:
             page = paginator.page(1)
+            print("except", page)
         except EmptyPage:
             page = paginator.page(paginator.num_pages)
-        else:
-            page=paginator.page(1)
+            print("EmptyPage", page)
+        except:
+            page = paginator.page(1)
+            print("else", page)
 
         # print(page.object_list,page.numberv,page.paginator)
         # print(paginator.count,paginator.num_pages,paginator.page_range)
@@ -302,5 +306,3 @@ class SearchView(APIView):
         articles = Article.objects.filter(art_name__contains=q)
         context = {'articles': articles}
         return render(request, 'reader/store.html', context)
-
-

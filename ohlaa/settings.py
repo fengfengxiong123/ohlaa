@@ -22,7 +22,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'x9kol^i!^z43^=(k3au9@f%%k-*y2n@x^xp$$tda6&428v&$)e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if os.name == 'nt':
+    DEBUG = True
+else:
+    DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'www.ohlaa.com', 'ohlaa.com']
 
@@ -179,11 +182,11 @@ CACHES = {
         'LOCATION': 'redis://127.0.0.1:6379',
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-             "PASSWORD": "",
+            "PASSWORD": "",
         },
     },
 }
 
-REDIS_TIMEOUT=7*24*60*60
-CUBES_REDIS_TIMEOUT=60*60
-NEVER_REDIS_TIMEOUT=365*24*60*60
+REDIS_TIMEOUT = 7 * 24 * 60 * 60
+CUBES_REDIS_TIMEOUT = 60 * 60
+NEVER_REDIS_TIMEOUT = 365 * 24 * 60 * 60
